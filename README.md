@@ -51,8 +51,7 @@ npm install -g express react
 Once you have these tools installed, you're ready to move on to the next section and start setting up your development environment.
 
 ### Installation
-#### Create a Node.js-Express Backend Project
-Provide step-by-step instructions on how to install the project. 
+
 
 ## Usage
 
@@ -91,7 +90,6 @@ npm run start
 
 ## Contributing
 
-Explain how others can contribute to the project. This may include guidelines for code contributions, how to report bugs or request features, etc.
 
 ## License
 
