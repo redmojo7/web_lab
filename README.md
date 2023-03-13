@@ -71,9 +71,8 @@ npm run start
 
 ### Phase 1: Setup and Configuration
  1. Create project repository and README file
- 2. Define project scope and objectives
- 3. Set up development environment and install necessary tools and dependencies
- 4. Configure Docker setup for the web application
+ 2. Set up development environment and install necessary tools and dependencies
+ 3. Configure Docker setup for the web application
 ### Phase 2: Vulnerability Demonstrations
  1. Implement injection attack demonstrations (SQL injection, command injection, etc.)
  2. Implement broken authentication and session management demonstrations
