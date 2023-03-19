@@ -36,6 +36,8 @@ services:
       POSTGRES_DB: mydatabase
     volumes:
       - dbdata:/var/lib/postgresql/data
+      - ./database-seed.sql:/docker-entrypoint-initdb.d/database-seed.sql
 
 volumes:
   dbdata:
+      driver: local
