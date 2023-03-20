@@ -3,6 +3,7 @@ services:
   api:
     build: ./api
     container_name: api_backend
+    restart: on-failure
     ports:
       - '8080:8080'
     volumes:
@@ -15,6 +16,7 @@ services:
       - DB_USER=myuser
       - DB_PASSWORD=mypassword
       - DB_NAME=mydatabase
+      - JWT_SECRET=jK5q5q5KGtYJ^tj8!W@2Q~$bZ%Rj9a
   client:
     build: ./client
     container_name: client_frontend

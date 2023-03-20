@@ -19,4 +19,30 @@ async function connectToDB() {
   }
 }
 
-module.exports =  { connectToDB, pool };
+
+// Get a user by email
+async function getUserByEmail(email) {
+    const query = {
+      text: 'SELECT * FROM users WHERE email = $1',
+      values: [email],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
+  }
+  
+  // Get a user by ID
+  async function getUserById(id) {
+    const query = {
+      text: 'SELECT * FROM users WHERE id = $1',
+      values: [id],
+    };
+    const { rows } = await pool.query(query);
+    return rows[0];
+  }
+  
+  module.exports = {
+    connectToDB, 
+    pool,
+    getUserByEmail,
+    getUserById,
+  };

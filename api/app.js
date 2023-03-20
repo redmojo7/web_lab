@@ -1,7 +1,14 @@
 const express = require('express');
 const cors = require("cors");
+const session = require('express-session');
+const { passport } = require('./auth');
+const { verifyToken } = require('./middleware');
 const {connectToDB} = require('./db');
-const usersRouter = require('./repository/users');
+const usersRouter = require('./routes/users');
+const registerRouter = require('./routes/register'); // Import registerController
+const loginRouter = require('./routes/login');
+
+
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -9,9 +16,24 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'secret',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Use the users router for /api/users requests
-app.use('/api/users', usersRouter);
+app.use('/api/users', verifyToken, usersRouter);
+
+// Route for the login API
+app.use('/api/login', loginRouter);
+
+// Route for the register API
+app.post('/api/register', registerRouter.register);
+
 
 app.get('/', (req, res) => {
   //res.send('This Back-End Home Route');
