@@ -9,6 +9,7 @@ services:
     volumes:
       - ./api:/app
       - /app/node_modules
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - db
     environment:
@@ -17,6 +18,8 @@ services:
       - DB_PASSWORD=mypassword
       - DB_NAME=mydatabase
       - JWT_SECRET=jK5q5q5KGtYJ^tj8!W@2Q~$bZ%Rj9a
+    # start the Docker daemon inside the container
+    command: sh -c "dockerd & node app.js"
   client:
     build: ./client
     container_name: client_frontend
