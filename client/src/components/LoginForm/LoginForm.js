@@ -43,7 +43,7 @@ const LoginForm = () => {
         <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Log In</button>
+        <button class="primary-button" type="submit">Log In</button>
         <a href="/register">Register</a>
       </form>
     </div>

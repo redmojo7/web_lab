@@ -26,6 +26,7 @@ async function getUserByEmail(email) {
       text: 'SELECT * FROM users WHERE email = $1',
       values: [email],
     };
+    console.debug(`[getUserByEmail]: ${query}`);
     const { rows } = await pool.query(query);
     return rows[0];
   }

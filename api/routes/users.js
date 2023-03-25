@@ -19,9 +19,11 @@ router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
     // Check if user ID in token matches the ID in the request
+    /*
     if (req.user.id !== parseInt(id)) {
       return res.status(401).send('Unauthorized');
     }
+    */
 
     //const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
     // sql injection code

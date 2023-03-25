@@ -7,6 +7,7 @@ const {connectToDB} = require('./db');
 const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register'); // Import registerController
 const loginRouter = require('./routes/login');
+const commandsRouter = require('./routes/commands');
 
 
 
@@ -33,6 +34,9 @@ app.use('/api/login', loginRouter);
 
 // Route for the register API
 app.post('/api/register', registerRouter.register);
+
+// Route for the commands API
+app.use('/api/commands', commandsRouter);
 
 
 app.get('/', (req, res) => {

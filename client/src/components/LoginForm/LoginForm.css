@@ -1,13 +1,14 @@
 *,
 *:before,
-*:after{
+*:after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
 body {
-    background-color: #080710;
+    background-color: #f09819;
+    /*#080710;*/
 }
 
 .background {
@@ -95,7 +96,7 @@ input {
     color: #e5e5e5;
 }
 
-button {
+.primary-button {
     margin-top: 50px;
     width: 100%;
     background-color: #ffffff;
@@ -125,4 +126,12 @@ a {
 a:hover {
     color: #1E90FF;
     border-bottom: 2px solid #1E90FF;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 20px;
 }
