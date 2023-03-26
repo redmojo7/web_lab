@@ -1,0 +1,4 @@
+FROM mariadb
+
+# Copy users.sql
+COPY ./sql/users.sql /docker-entrypoint-initdb.d/users.sql

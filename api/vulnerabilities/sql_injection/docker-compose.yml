@@ -1,0 +1,48 @@
+# ./docker-compose.yml
+
+version: '3'
+
+services:
+  db:
+    build: 
+      context: .
+      dockerfile: Dockerfile.db
+    container_name: sql_injection_db
+    environment:
+      MYSQL_ROOT_PASSWORD: my_password
+      MYSQL_DATABASE: my_db
+      MYSQL_USER: my_user
+      MYSQL_PASSWORD: my_password
+    ports:
+      - "3306:3306"
+    networks:
+      web_lab_my_network:
+        aliases:
+          - sql_injection
+    #volumes:
+    #  - ./sql/users.sql:/docker-entrypoint-initdb.d/users.sql
+  web:
+    build: .
+    container_name: sql_injection_web
+    environment:
+      DB_HOST: db
+      DB_USER: my_user
+      DB_PASSWORD: my_password
+      DB_NAME: my_db
+    depends_on:
+      - db
+    networks:
+      web_lab_my_network:
+        aliases:
+          - sql_injection
+    #volumes:
+    #  - ../sql_injection/php:/var/www/html/
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true
+
+networks:
+  web_lab_my_network:
+    external:
+      name: web_lab_my_network

@@ -8,6 +8,7 @@ const usersRouter = require('./routes/users');
 const registerRouter = require('./routes/register'); // Import registerController
 const loginRouter = require('./routes/login');
 const commandsRouter = require('./routes/commands');
+const exercisesRouter = require('./routes/exercises');
 
 
 
@@ -38,6 +39,8 @@ app.post('/api/register', registerRouter.register);
 // Route for the commands API
 app.use('/api/commands', commandsRouter);
 
+// Route for the commands API
+app.use('/api/exercises', exercisesRouter);
 
 app.get('/', (req, res) => {
   //res.send('This Back-End Home Route');
