@@ -19,8 +19,9 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
   - [Acknowledgements](#acknowledgements)
 
 ## About the Project
+This project involves creating a web application that will serve as the main platform for users to practice exploiting web application vulnerabilities and learn about web application security. It will include a range of vulnerable web applications that users can test their skills on, including injection attacks, broken authentication and session management, and insufficient logging and monitoring. The website will be designed to be user-friendly and accessible to users of all skill levels. Specific features and functions, such as the types of vulnerabilities to be covered, will be further developed in the planning stage.
 
-The lab (Web Application) will be used to demonstrate how these vulnerabilities can be exploited and to understand how to prevent them. It will involve setting up a testing environment that simulates real-world scenarios. The lab will cover a range of vulnerabilities, including injection attacks, broken authentication and session management, and insufficient logging and monitoring.  Overall, the project is an exciting opportunity to contribute to the field of web application security and make a positive impact in this area.
+The web application will be used to demonstrate how these vulnerabilities can be exploited and how to prevent them. It will involve setting up a testing environment that simulates real-world scenarios. The lab will cover a range of vulnerabilities, including injection attacks, broken authentication and session management, and insufficient logging and monitoring. Overall, the project is an exciting opportunity to contribute to the field of web application security and make a positive impact in this area.
 
 ## Framework
 This is a modern, scalable, and maintainable full-stack web applications. By using `Docker`, we can easily package and deploy your application across different environments, while `Node.js` and `Express` provide the server-side infrastructure for handling HTTP requests and serving dynamic content. Finally, `React` enables you to build rich and interactive user interfaces that can communicate with backend APIs.
@@ -71,21 +72,26 @@ npm run start
 
 ### Phase 1: Setup and Configuration
  1. Create project repository and README file
- 2. Set up development environment and install necessary tools and dependencies
+ 2. Determine the necessary tools and dependencies for the development environment, such as the programming language, framework, and database, and install them
  3. Configure Docker setup for the web application
+ 4. Develop a main website for users to practice exploiting web application vulnerabilities 
+ 5. Integrate a Docker-in-Docker (dind) setup in the project
 ### Phase 2: Vulnerability Demonstrations
  1. Implement injection attack demonstrations (SQL injection, command injection, etc.)
  2. Implement broken authentication and session management demonstrations
  3. Implement cross-site scripting (XSS) and cross-site request forgery (CSRF) demonstrations
  4. Implement insufficient logging and monitoring demonstrations
-### Phase 3: Fixing Vulnerabilities
+### Phase 3: Penetration Testing and Vulnerability Exploration
+ 1. Conduct penetration testing to identify additional vulnerabilities and weaknesses in the web application
+ 2. Explore and experiment with different tools and techniques for identifying and exploiting vulnerabilities
+### Phase 4: Fixing Vulnerabilities
  1. Analyze and prioritize vulnerabilities found in the testing phase
  2. Develop and implement fixes for identified vulnerabilities
  3. Conduct additional testing to ensure vulnerabilities are successfully fixed
-### Phase 4: Documentation and Publication
+### Phase 5: Documentation and Publication
  1. Create detailed documentation on the vulnerabilities demonstrated and how to prevent them
  2. Publish the project on a public platform (GitHub, etc.) for others to use and learn from
- 3. Share the project and findings with the wider web application security community
+ 3. Provide guidance and resources for users to continue learning and exploring web application security on their own.
 
 ## Contributing
 

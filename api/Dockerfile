@@ -31,6 +31,9 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
+# Give run privilege
+RUN chmod +x /app/vulnerabilities/run_container.sh
+
 # Expose the port used by the application
 EXPOSE 8080
 

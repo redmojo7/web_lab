@@ -30,12 +30,13 @@ function ProfilePage() {
       });
   };
 
-  const handleRunClick = (command) => {
+  const handleRunClick = (command, action) => {
     // Clear the result area
     setResults('');
-    
+  
     axios.post(`http://localhost:8080/api/exercises`, {
-      exercise: command
+      exercise: command,
+      action: action
     }, {
       headers: {
         Authorization: `Bearer ${token}`
@@ -47,16 +48,15 @@ function ProfilePage() {
       .catch(error => {
         console.log(error);
       });
-  };
+  };  
 
   const handleUpClick = () => {
-    handleRunClick('sql_injection_up');
+    handleRunClick('sql_injection', 'start');
   };
-
+  
   const handleDownClick = () => {
-    handleRunClick('sql_injection_down');
+    handleRunClick('sql_injection', 'stop');
   };
-
 
   const handleInputChange = (event) => {
     setCommand(event.target.value);

@@ -38,6 +38,7 @@ services:
     #volumes:
     #  - ../sql_injection/php:/var/www/html/
     ports:
+      #- "9000-9999:80"
       - "8100:80"
     stdin_open: true
     tty: true
