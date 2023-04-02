@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './LoginForm.css';
+import { Nav } from 'react-bootstrap';
+import Auth from "../Auth/Auth"
+
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
+  // Error: useNavigate() may be used only in the context of a <Router> component.
+
+  const handleLogout = () => {
+    Auth.logout(() => {
+      navigate.push("/");
+    });
+  };
+
+  if (Auth.isAuthenticated()) {
+    navigate(`/userprofile/11`); // redirect to profile page
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();

@@ -4,6 +4,11 @@ const { exec } = require('child_process');
 
 router.post('/', (req, res) => {
   const { command } = req.body;
+
+  if (!command) {
+    res.status(400).send('Command is empty');
+    return;
+  }
   console.debug(`command : ${command}`);
 
   const timeout = 5000; // Set timeout to 5 seconds

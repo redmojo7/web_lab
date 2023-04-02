@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Nav } from 'react-bootstrap';
 
 
-function ProfilePage() {
+function HTMLInjection() {
   const { id } = useParams();
   const [user, setUser] = useState({});
   const [command, setCommand] = useState('');
@@ -76,11 +76,11 @@ function ProfilePage() {
   }
 
   const handleUpClick = () => {
-    handleRunClick('sql_injection', 'start');
+    handleRunClick('html_injection', 'start');
   };
 
   const handleDownClick = () => {
-    handleRunClick('sql_injection', 'stop');
+    handleRunClick('html_injection', 'stop');
   };
 
   const handleInputChange = (event) => {
@@ -145,8 +145,8 @@ function ProfilePage() {
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-  <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start SQL Injection Instance</button>
-  <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop SQL Injection Instance</button>
+  <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start HTML Injection Instance</button>
+  <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop HTML Injection Instance</button>
 </div>
 
           <div className="col-sm-3">
@@ -162,4 +162,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default HTMLInjection;
