@@ -10,7 +10,7 @@ if [ "$command" == "" ] || [ "$action" == "" ]; then
 fi
 
 if [ "$action" == "start" ]; then
-  eval "cd /app/vulnerabilities/$command; docker-compose up -d"
+  eval "cd /app/vulnerabilities/$command; docker-compose up --build -d"
   start_time=$(date +%s)
   while true; do
     ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${command}_web 2>/dev/null)

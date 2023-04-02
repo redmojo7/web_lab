@@ -11,6 +11,8 @@ function ProfilePage() {
   const token = localStorage.getItem('token');
   console.debug(`token: ${token}`);
 
+  const urlRegex = /(https?:\/\/[^\s]+)/g; // matches http or https URLs
+
   const handleClick = () => {
     // Clear the result area
     setResults('');
@@ -44,11 +46,30 @@ function ProfilePage() {
     })
       .then(response => {
         setResults(response.data);
+        //setResults(response.data.replace(urlRegex, '<a href="$&">$&</a>'));
       })
       .catch(error => {
         console.log(error);
       });
   };  
+
+  function extractLink() {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const matches = results.match(urlRegex);
+  
+    if (!matches) {
+      return results;
+    }
+  
+    const linkUrl = matches[0];
+    const linkText = results.replace(linkUrl, '');
+  
+    return (
+      <div className="result">
+        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer">{linkUrl}</a>}
+      </div>
+    );
+  }
 
   const handleUpClick = () => {
     handleRunClick('sql_injection', 'start');
@@ -118,7 +139,7 @@ function ProfilePage() {
             
       <div className="container mt-3">
         <h3>Results:</h3>
-        <pre>{results}</pre>
+        <pre>{extractLink()}</pre>
       </div>
     </div>
   );
