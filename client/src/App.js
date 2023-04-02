@@ -64,22 +64,23 @@ function App() {
         <Row>
           <Col md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }}>
             <Nav defaultActiveKey="/home" className="flex-column">
-              <Nav.Link href="/userprofile/11">SQL Injection</Nav.Link>
-              <Nav.Link href="/HTMLInjection">HTML Injection</Nav.Link>
-              <Nav.Link href="/home">Excercise 3</Nav.Link>
-              <Nav.Link href="/home">Excercise 4</Nav.Link>
-              <Nav.Link href="/home">Excercise 5</Nav.Link>
-              <Nav.Link href="/home">Excercise 6</Nav.Link>
-              <Nav.Link href="/home">Excercise 7</Nav.Link>
-              <Nav.Link href="/home">Excercise 8</Nav.Link>
-              <Nav.Link href="/home">Excercise 9</Nav.Link>
-              <Nav.Link href="/home">Excercise 10</Nav.Link>
+              <h5 style={{color: "lightskyblue", textAlign: "center"}}>Excercises</h5>
+              <Nav.Link style={{textAlign: "center"}} href="/userprofile">SQL Injection</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/HTMLInjection">HTML Injection</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 3</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 4</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 5</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 6</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 7</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 8</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 9</Nav.Link>
+              <Nav.Link style={{textAlign: "center"}} href="/home">Excercise 10</Nav.Link>
             </Nav>
           </Col>
           <Col md={10}>
             <Routes>
               <Route path="/" element={<LoginForm />} />
-              <Route path="/userprofile/:id" element={<UserProfile />} />
+              <Route path="/userprofile/" element={<UserProfile />} />
               <Route path="/register" element={<RegisterForm />} />
               <Route path="/HTMLInjection" element={<HTMLInjection />} />
             </Routes>

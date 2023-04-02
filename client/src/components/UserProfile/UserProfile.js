@@ -5,7 +5,6 @@ import { Nav } from 'react-bootstrap';
 
 
 function ProfilePage() {
-  const { id } = useParams();
   const [user, setUser] = useState({});
   const [command, setCommand] = useState('');
   const [results, setResults] = useState('');
@@ -70,7 +69,7 @@ function ProfilePage() {
 
     return (
       <div className="result">
-        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer">{linkUrl}</a>}
+        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>{linkUrl}</a>}
       </div>
     );
   }
@@ -94,7 +93,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/users/${id}`, {
+    axios.get(`http://localhost:8080/api/users/profile`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -105,11 +104,11 @@ function ProfilePage() {
       .catch(error => {
         console.log(error);
       });
-  }, [id]);
+  }, []);
 
   return (
     <div className="container" style={{backgroundColor: "#e9ecef"}}>
-      <h1 className="mb-4">Profile Page</h1>
+      <h1 className="mb-4 text-dark">SQL Injection</h1>
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
@@ -117,9 +116,6 @@ function ProfilePage() {
           </div>
           <div className="col-sm-6">
             <ul className="list-group">
-              <li className="list-group-item">
-                <strong>ID:</strong> {user.id}
-              </li>
               <li className="list-group-item">
                 <strong>Name:</strong> {user.first_name} {user.last_name}
               </li>

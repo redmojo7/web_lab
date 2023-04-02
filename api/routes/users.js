@@ -13,22 +13,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+/*
 // Get a user by ID
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Check if user ID in token matches the ID in the request
-    /*
+    //Check if user ID in token matches the ID in the request
+    
     if (req.user.id !== parseInt(id)) {
       return res.status(401).send('Unauthorized');
     }
-    */
-
-    //const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
-    // sql injection code
-    // http://localhost:8080/api/users/1000000%20or%20id=3%20--
-    const sql ='SELECT * FROM users WHERE id = ' + id;
+    
     console.debug(sql);
     const { rows } = await pool.query(sql);
     if (rows.length === 0) {
@@ -40,6 +36,7 @@ router.get('/:id', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+*/
 
 // Create a user
 router.post('/', async (req, res) => {
@@ -83,5 +80,22 @@ router.delete('/:id', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+// Get user profile
+router.get('/profile', async (req, res) => {
+  try {
+    const { id } = req.user;
+    const { rows } = await pool.query('SELECT email, first_name, last_name FROM users WHERE id = $1', [id]);
+    if (rows.length === 0) {
+      return res.status(404).send('User not found');
+    }
+    const {email, first_name, last_name} = rows[0];
+    res.json({email, first_name, last_name});
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server error');
+  }
+});
+
 
 module.exports = router;

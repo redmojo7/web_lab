@@ -22,7 +22,7 @@ const LoginForm = () => {
   };
 
   if (Auth.isAuthenticated()) {
-    navigate(`/userprofile/11`); // redirect to profile page
+    navigate(`/userprofile/`); // redirect to profile page
   }
 
   const handleLogin = async (e) => {
@@ -39,7 +39,7 @@ const LoginForm = () => {
       console.log(data); // use data to update UI or state
       if (response.ok) {
         localStorage.setItem('token', data.token);
-        navigate(`/userprofile/${data.id}`); // redirect to profile page
+        navigate(`/userprofile`); // redirect to profile page
       } else {
         setError(data.message);
       }
@@ -55,7 +55,7 @@ const LoginForm = () => {
         <div class="shape"></div>
       </div>
       <form onSubmit={handleLogin}>
-        <h3>Login Here</h3>
+        <h3 className='text-dark'>Login Here</h3>
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <label for="password">Password</label>

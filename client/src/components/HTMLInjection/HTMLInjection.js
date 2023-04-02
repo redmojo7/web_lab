@@ -5,7 +5,6 @@ import { Nav } from 'react-bootstrap';
 
 
 function HTMLInjection() {
-  const { id } = useParams();
   const [user, setUser] = useState({});
   const [command, setCommand] = useState('');
   const [results, setResults] = useState('');
@@ -15,7 +14,7 @@ function HTMLInjection() {
 
   const urlRegex = /(https?:\/\/[^\s]+)/g; // matches http or https URLs
 
-  
+
 
   const handleClick = () => {
     // Clear the result area
@@ -65,22 +64,24 @@ function HTMLInjection() {
       return results;
     }
 
-    const linkUrl = matches[0];
+    const fileName = "/register.php";
+    var linkUrl = matches[0]
     const linkText = results.replace(linkUrl, '');
+    linkUrl = matches[0] + fileName;
 
     return (
       <div className="result">
-        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer">{linkUrl}</a>}
+        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>{linkUrl}</a>}
       </div>
     );
   }
 
   const handleUpClick = () => {
-    handleRunClick('html_injection', 'start');
+    handleRunClick('sql_injection', 'start');
   };
 
   const handleDownClick = () => {
-    handleRunClick('html_injection', 'stop');
+    handleRunClick('sql_injection', 'stop');
   };
 
   const handleInputChange = (event) => {
@@ -94,7 +95,7 @@ function HTMLInjection() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/users/${id}`, {
+    axios.get(`http://localhost:8080/api/users/profile`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -105,30 +106,17 @@ function HTMLInjection() {
       .catch(error => {
         console.log(error);
       });
-  }, [id]);
+  }, []);
 
   return (
-    <div className="container" style={{backgroundColor: "#e9ecef"}}>
-      <h1 className="mb-4">Profile Page</h1>
+    <div className="container" style={{ backgroundColor: "#e9ecef" }}>
+      <h1 className="mb-4 text-dark">HTML Injection</h1>
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
             picture
           </div>
           <div className="col-sm-6">
-            <ul className="list-group">
-              <li className="list-group-item">
-                <strong>ID:</strong> {user.id}
-              </li>
-              <li className="list-group-item">
-                <strong>Name:</strong> {user.first_name} {user.last_name}
-              </li>
-              <li className="list-group-item">
-                <strong>Email:</strong> {user.email}
-              </li>
-              {/* additional profile information */}
-            </ul>
-            <br />
             <div className="form-group">
               <label htmlFor="commandInput">Command:</label>
               <input type="text" className="form-control" id="commandInput" value={command} onChange={handleInputChange} onKeyDown={handleKeyDown} />
@@ -145,9 +133,9 @@ function HTMLInjection() {
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-  <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start HTML Injection Instance</button>
-  <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop HTML Injection Instance</button>
-</div>
+            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start HTML Injection Instance</button>
+            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop HTML Injection Instance</button>
+          </div>
 
           <div className="col-sm-3">
           </div>
