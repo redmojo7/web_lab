@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Nav } from 'react-bootstrap';
-
+import Footer from '../../Footer';
+import Header from '../../Header';
+const { server } = require('../../config');
 
 function ProfilePage() {
   const [user, setUser] = useState({});
@@ -14,13 +16,13 @@ function ProfilePage() {
 
   const urlRegex = /(https?:\/\/[^\s]+)/g; // matches http or https URLs
 
-  
+
 
   const handleClick = () => {
     // Clear the result area
     setResults('');
 
-    axios.post(`http://localhost:8080/api/commands`, {
+    axios.post(`${server}/api/commands`, {
       command: command
     }, {
       headers: {
@@ -39,7 +41,7 @@ function ProfilePage() {
     // Clear the result area
     setResults('');
 
-    axios.post(`http://localhost:8080/api/exercises`, {
+    axios.post(`${server}/api/exercises`, {
       exercise: command,
       action: action
     }, {
@@ -69,7 +71,7 @@ function ProfilePage() {
 
     return (
       <div className="result">
-        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>{linkUrl}</a>}
+        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{ color: "blue" }}>{linkUrl}</a>}
       </div>
     );
   }
@@ -93,7 +95,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/users/profile`, {
+    axios.get(`${server}/api/users/profile`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -107,7 +109,7 @@ function ProfilePage() {
   }, []);
 
   return (
-    <div className="container" style={{backgroundColor: "#e9ecef"}}>
+    <div className="container" style={{ backgroundColor: "#e9ecef" }}>
       <h1 className="mb-4 text-dark">SQL Injection</h1>
       <div className="container">
         <div className="row">
@@ -141,9 +143,9 @@ function ProfilePage() {
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-  <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start SQL Injection Instance</button>
-  <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop SQL Injection Instance</button>
-</div>
+            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start SQL Injection Instance</button>
+            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop SQL Injection Instance</button>
+          </div>
 
           <div className="col-sm-3">
           </div>

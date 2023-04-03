@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Register.css';
+const { server } = require('../../config');
+
 
 function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -21,7 +23,7 @@ function RegisterForm() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:8080/api/register', formData);
+      const response = await axios.post(`${server}/api/register`, formData);
       localStorage.setItem('token', response.data.token);
       console.debug(`response.data: ${response.data}`);
       navigate(`/userprofile/${response.data.id}`); 

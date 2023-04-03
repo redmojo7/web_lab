@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Nav } from 'react-bootstrap';
+const { server } = require('../../config');
 
 
 function HTMLInjection() {
@@ -20,7 +21,7 @@ function HTMLInjection() {
     // Clear the result area
     setResults('');
 
-    axios.post(`http://localhost:8080/api/commands`, {
+    axios.post(`${server}/api/commands`, {
       command: command
     }, {
       headers: {
@@ -39,7 +40,7 @@ function HTMLInjection() {
     // Clear the result area
     setResults('');
 
-    axios.post(`http://localhost:8080/api/exercises`, {
+    axios.post(`${server}/api/exercises`, {
       exercise: command,
       action: action
     }, {
@@ -95,7 +96,7 @@ function HTMLInjection() {
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/users/profile`, {
+    axios.get(`${server}/api/users/profile`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

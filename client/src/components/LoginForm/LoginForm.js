@@ -6,20 +6,15 @@ import './LoginForm.css';
 import { Nav } from 'react-bootstrap';
 import Auth from "../Auth/Auth"
 
+const { server } = require('../../config');
 
-const LoginForm = () => {
+
+const LoginForm = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
-  // Error: useNavigate() may be used only in the context of a <Router> component.
-
-  const handleLogout = () => {
-    Auth.logout(() => {
-      navigate.push("/");
-    });
-  };
 
   if (Auth.isAuthenticated()) {
     navigate(`/userprofile/`); // redirect to profile page
@@ -28,7 +23,7 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch(`${server}/api/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +34,9 @@ const LoginForm = () => {
       console.log(data); // use data to update UI or state
       if (response.ok) {
         localStorage.setItem('token', data.token);
+        props.onLogin(); // notify parent component of successful login
         navigate(`/userprofile`); // redirect to profile page
+        
       } else {
         setError(data.message);
       }
