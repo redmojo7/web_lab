@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Nav } from 'react-bootstrap';
-const { server } = require('../../config');
+const { server, serverIp} = require('../../config');
 
 
 function HTMLInjection() {
@@ -60,16 +60,16 @@ function HTMLInjection() {
   function extractLink() {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     const matches = results.match(urlRegex);
-
+  
     if (!matches) {
       return results;
     }
 
-    const fileName = "/register.php";
-    var linkUrl = matches[0]
-    const linkText = results.replace(linkUrl, '');
-    linkUrl = matches[0] + fileName;
-
+    const fileName = "register.php";
+    const linkText = results.replace(matches[0], '');
+    const serverUrlRegex = /(https?:\/\/)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d{1,5})?/g;
+    const linkUrl = matches[0].replace(serverUrlRegex, `$1${serverIp}$3/${fileName}`);
+  
     return (
       <div className="result">
         {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{color: "blue"}}>{linkUrl}</a>}

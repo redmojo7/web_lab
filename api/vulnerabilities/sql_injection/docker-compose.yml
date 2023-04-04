@@ -19,6 +19,7 @@ services:
       web_lab_my_network:
         aliases:
           - sql_injection
+    restart: always # Add this line
     #volumes:
     #  - ./sql/users.sql:/docker-entrypoint-initdb.d/users.sql
   web:

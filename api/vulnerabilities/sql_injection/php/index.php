@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //echo "Login SQL query: " . $sql . "<br>";
   
   $result = mysqli_query($conn, $sql);
-  echo "Login SQL result: " . mysqli_num_rows($result) . "<br>";
+  //echo "Login SQL result: " . mysqli_num_rows($result) . "<br>";
   // Check if there is a matching user
   if (mysqli_num_rows($result) == 1) {
     // Set the user's session data

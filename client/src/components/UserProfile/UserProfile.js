@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Nav } from 'react-bootstrap';
 import Footer from '../../Footer';
 import Header from '../../Header';
-const { server } = require('../../config');
+const { server, serverIp } = require('../../config');
 
 function ProfilePage() {
   const [user, setUser] = useState({});
@@ -65,9 +65,11 @@ function ProfilePage() {
     if (!matches) {
       return results;
     }
-
-    const linkUrl = matches[0];
-    const linkText = results.replace(linkUrl, '');
+    
+    const linkText = results.replace(matches[0], '');
+    const serverUrlRegex = /(https?:\/\/)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d{1,5})?/g;
+    const linkUrl = matches[0].replace(serverUrlRegex, `$1${serverIp}$3`);
+  
 
     return (
       <div className="result">

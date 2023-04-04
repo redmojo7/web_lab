@@ -15,10 +15,12 @@ if [ "$action" == "start" ]; then
   while true; do
     ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${command}_web 2>/dev/null)
     if [ "$ip" != "" ]; then
-      #echo "Container is ready at http://$ip"
-      echo "Container is ready at http://localhost:8100"
+      port=$(docker-compose port web 80 | awk -F: '{print $2}')
+      url="http://$ip:$port"
+      echo "Container is ready at $url"
       break
     fi
+
     sleep 1
     curr_time=$(date +%s)
     if [ $((curr_time - start_time)) -gt $timeout ]; then
