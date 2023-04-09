@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  website:
+    build:
+      context: ./website
+    ports:
+      - '9100:9100'
+    volumes:
+      - ./users.php:/app/users.php
+      - ./users.json:/app/users.json
+  idp:
+    image: kristophjunge/test-saml-idp
+    #build:
+    #  context: ./saml-idp
+    ports:
+      - '9200:8080'
+    environment:
+      SIMPLESAMLPHP_SP_ENTITY_ID: 'saml-poc'
+      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: "http://192.168.0.8:9100/login/callback"
+      #SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: 'http://website:9100/acs'
+      #SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: 'http://website:9100/logout'
+      #SIMPLESAMLPHP_SP_NAMEID_FORMAT: 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified'
+      #SIMPLESAMLPHP_IDP_ENTITY_ID: 'http://localhost:9200/saml/idp/metadata.php'
+      #SIMPLESAMLPHP_IDP_SINGLE_SIGN_ON_SERVICE: 'http://localhost:9200/saml/idp/ssocircle.php'
+      #SIMPLESAMLPHP_IDP_SINGLE_LOGOUT_SERVICE: 'http://localhost:9200/saml/idp/sls.php'
+    volumes:
+      - ./users.php:/var/www/simplesamlphp/config/authsources.php

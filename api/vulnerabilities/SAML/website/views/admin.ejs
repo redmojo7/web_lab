@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SAML Administration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>SAML Administration</h1>
+      <div class="text-center h3">All User Information</div>
+      <table class="table caption-side-top">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% Object.keys(users).forEach(function(userId) { %>
+            <% var user = users[userId]; %>
+            <tr>
+              <td><strong>User ID:</strong></td>
+              <td><%= userId %></td>
+            </tr>
+            <% Object.keys(user).forEach(function(key) { %>
+              <tr>
+                <td><%= key %></td>
+                <td>
+                  <% if (key === 'exampleauth:UserPass') { %>
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Username:Password</th>
+                          <th>UID</th>
+                          <th>eduPersonAffiliation</th>
+                          <th>Email</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% Object.keys(user[key]).forEach(function(username) { %>
+                          <% var userInfo = user[key][username]; %>
+                          <tr>
+                            <td><%= username %></td>
+                            <td><%= userInfo.uid %></td>
+                            <td><%= userInfo.eduPersonAffiliation %></td>
+                            <td><%= userInfo.email %></td>
+                          </tr>
+                        <% }); %>
+                      </tbody>
+                    </table>
+                  <% } else { %>
+                    <%= user[key] %>
+                  <% } %>
+                </td>
+              </tr>
+            <% }); %>
+            <tr><td colspan="2"><hr></td></tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper-base.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
