@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { exec } = require('child_process');
 
-const commands = ['sql_injection'];
+const commands = ['sql_injection', 'saml'];
 
 router.post('/', async (req, res) => {
   const { exercise, action } = req.body;
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
 
   // Execute the selected command
   const command = `/app/vulnerabilities/run_container.sh ${exercise} ${action}`;
+  console.debug(`run command: ${command}`);
   exec(command, (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);

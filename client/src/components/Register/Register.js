@@ -5,7 +5,7 @@ import './Register.css';
 const { server } = require('../../config');
 
 
-function RegisterForm() {
+function RegisterForm(props) {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,7 +26,8 @@ function RegisterForm() {
       const response = await axios.post(`${server}/api/register`, formData);
       localStorage.setItem('token', response.data.token);
       console.debug(`response.data: ${response.data}`);
-      navigate(`/userprofile/${response.data.id}`); 
+      props.onLogin(); // notify parent component of successful login
+      navigate(`/userprofile`); 
     } catch (error) {
       console.error(error);
     }

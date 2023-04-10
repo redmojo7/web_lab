@@ -13,7 +13,7 @@ const exercisesRouter = require('./routes/exercises');
 
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8180;
 
 app.use(cors());
 app.use(express.json());

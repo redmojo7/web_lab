@@ -35,7 +35,7 @@ COPY . .
 RUN chmod +x /app/vulnerabilities/run_container.sh
 
 # Expose the port used by the application
-EXPOSE 8080
+EXPOSE 8180
 
 # Set the start command
 CMD [ "npm", "start" ]

@@ -10,13 +10,15 @@ if [ "$command" == "" ] || [ "$action" == "" ]; then
 fi
 
 if [ "$action" == "start" ]; then
-  eval "cd /app/vulnerabilities/$command; docker-compose up --build -d"
+  docker_command="cd /app/vulnerabilities/$command; docker-compose up --build -d"
+  eval "$docker_command"
   start_time=$(date +%s)
   while true; do
     ip=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' ${command}_web 2>/dev/null)
     if [ "$ip" != "" ]; then
-      port=$(docker-compose port web 80 | awk -F: '{print $2}')
-      url="http://$ip:$port"
+      mapped_port=$(docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} {{end}}' ${command}_web | awk -F'/' '{gsub(/^[ \t]+|[ \t]+$/, ""); print $1}')
+      exposed_port=$(docker-compose port web $mapped_port | awk -F: '{print $2}')
+      url="http://$ip:$exposed_port"
       echo "Container is ready at $url"
       break
     fi

@@ -6,6 +6,7 @@ import LoginForm from "./components/LoginForm/LoginForm"
 import UserProfile from "./components/UserProfile/UserProfile";
 import HTMLInjection from "./components/HTMLInjection/HTMLInjection"
 import RegisterForm from "./components/Register/Register";
+import SAML from "./components/SAML/SAML";
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import auth from "./components/Auth/Auth";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +54,7 @@ function App() {
               <h5 style={{ color: "lightskyblue", textAlign: "center" }}>Excercises</h5>
               <Nav.Link style={{ textAlign: "center" }} href="/userprofile">SQL Injection</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/HTMLInjection">HTML Injection</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 3</Nav.Link>
+              <Nav.Link style={{ textAlign: "center" }} href="/SAML">SAML</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 4</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 5</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 6</Nav.Link>
@@ -67,8 +68,9 @@ function App() {
             <Routes>
               <Route path="/" element={<LoginForm onLogin={handleLogin}/>} />
               <Route path="/userprofile/" element={<UserProfile />} />
-              <Route path="/register" element={<RegisterForm />} />
+              <Route path="/register" element={<RegisterForm onLogin={handleLogin}/>} />
               <Route path="/HTMLInjection" element={<HTMLInjection />} />
+              <Route path="/SAML" element={<SAML />} />
             </Routes>
           </Col>
         </Row>

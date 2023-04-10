@@ -5,7 +5,7 @@ services:
     container_name: api_backend
     restart: on-failure
     ports:
-      - '8080:8080'
+      - '8180:8180'
     networks:
       - my_network
     volumes:
@@ -15,6 +15,7 @@ services:
     depends_on:
       - db
     environment:
+      - HOST_ABSOLUTE_PATH=${PWD}
       - DB_HOST=db
       - DB_USER=myuser
       - DB_PASSWORD=mypassword

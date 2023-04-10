@@ -12,6 +12,8 @@ RUN npm install
 COPY ./node_modules/passport-saml/lib/passport-saml/saml.js ./node_modules/passport-saml/lib/passport-saml/saml.js
 
 COPY ./certs .
+#RUN chmod -R 644 ./certs
+
 COPY views views
 COPY app.js .
 
