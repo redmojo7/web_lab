@@ -1,6 +1,19 @@
 # web_lab
 
-A full-stack web application that uses Docker, Node.js, Express, and React to demonstrate the `OWASP API Top Ten vulnerabilities`.
+A full-stack web application that uses Docker, Node.js, Express, and React to demonstrate the [OWASP API Top Ten vulnerabilities](https://owasp.org/www-project-api-security/).
+
+## Accomplishments
+
+- [x] SQL Injection && HTML Injection
+- [x] Broken User Authentication (Security Assertion Markup Language (SAML))
+- [ ] Broken Object Level Authorization
+- [ ] Excessive Data Exposure
+- [ ] Lack of Resources & Rate Limiting
+- [ ] Broken Function Level Authorization
+- [ ] Mass Assignment
+- [ ] Security Misconfiguration
+- [ ] Improper Assets Management
+- [ ] Insufficient Logging & Monitoring
 
 ## Table of Contents
 
