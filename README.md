@@ -4,7 +4,8 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 
 ## Accomplishments
 
-- [x] SQL Injection && HTML Injection
+- [x] Injection (SQL Injection)
+- [x] Cross-Site Scripting (XSS)
 - [x] Broken User Authentication (Security Assertion Markup Language (SAML))
 - [ ] Broken Object Level Authorization
 - [ ] Excessive Data Exposure
