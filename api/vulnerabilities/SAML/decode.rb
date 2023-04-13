@@ -22,5 +22,6 @@ puts "Response saved to riginal_response.xml file."
 puts "Malicious Response saved to malicious_response.xml file."
 puts "Output copied to clipboard!"
 
+# Open the file in Google Chrome
 system('open', '-a', 'Google Chrome', 'original_response.xml'); 
 system('open', '-a', 'Google Chrome', 'malicious_response.xml')
