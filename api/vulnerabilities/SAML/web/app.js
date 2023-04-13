@@ -27,6 +27,8 @@ const usersJson = fs.readFileSync('users.json');
 const users = JSON.parse(usersJson);
 console.log(users);
 
+const hostname = process.env.HOSTNAME || 'localhost';
+
 passport.serializeUser((user, done) => {
     console.log('-----------------------------');
     console.log('serialize user');
@@ -46,8 +48,8 @@ passport.deserializeUser((user, done) => {
 
 var samlStrategy = new saml.Strategy({
     //config options here
-    callbackUrl: 'http://192.168.0.8:9100/login/callback',
-    entryPoint: 'http://192.168.0.8:9200/simplesaml/saml2/idp/SSOService.php',
+    callbackUrl: `http://${hostname}:9100/login/callback`,
+    entryPoint: `http://${hostname}:9200/simplesaml/saml2/idp/SSOService.php`,
     issuer: 'saml-poc',
     identifierFormat: null,
     decryptionPvk: fs.readFileSync(__dirname + '/key.pem', 'utf8'),
@@ -119,7 +121,7 @@ app.post('/login/callback',
         console.log('SAML attributes:', req.user);
         console.log('-----------------------------');
         // If the current user is an administrator, render the administration view
-        if (req.user.eduPersonAffiliation === "group_admin") {
+        if (req.user.email === "admin@example.com") {
             
             res.render('admin', { users: users });
         }

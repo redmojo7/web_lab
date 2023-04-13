@@ -2,15 +2,18 @@
 
 command=$1
 action=$2
+hostname=$3
 timeout=30
 
-if [ "$command" == "" ] || [ "$action" == "" ]; then
-  echo "Usage: ./start-container.sh <command> <action>"
+if [ "$command" == "" ] || [ "$action" == "" ] || [ "$hostname" == "" ]; then
+  echo "Usage: ./start-container.sh <command> <action> <hostname>"
   exit 1
 fi
 
+
 if [ "$action" == "start" ]; then
-  docker_command="cd /app/vulnerabilities/$command; docker-compose up --build -d"
+  docker_command="cd /app/vulnerabilities/$command; HOSTNAME=$hostname docker-compose up --build -d"
+  #echo "$docker_command"
   eval "$docker_command"
   start_time=$(date +%s)
   while true; do
@@ -18,7 +21,7 @@ if [ "$action" == "start" ]; then
     if [ "$ip" != "" ]; then
       mapped_port=$(docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} {{end}}' ${command}_web | awk -F'/' '{gsub(/^[ \t]+|[ \t]+$/, ""); print $1}')
       exposed_port=$(docker-compose port web $mapped_port | awk -F: '{print $2}')
-      url="http://$ip:$exposed_port"
+      url="http://$hostname:$exposed_port"
       echo "Container is ready at $url"
       break
     fi

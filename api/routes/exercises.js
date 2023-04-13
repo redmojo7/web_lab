@@ -6,9 +6,10 @@ const commands = ['sql_injection', 'saml'];
 
 router.post('/', async (req, res) => {
   const { exercise, action } = req.body;
-
+  const fullUrl = `${req.protocol}://${req.hostname}${req.originalUrl}`;
+  console.debug(`fullUrl : ${fullUrl}`);
   console.debug(`exercise: ${exercise}, action: ${action}`);
-
+  
   if (!commands.includes(exercise)) {
     res.status(400).send('Invalid exercise name');
     return;
@@ -20,7 +21,7 @@ router.post('/', async (req, res) => {
   }
 
   // Execute the selected command
-  const command = `/app/vulnerabilities/run_container.sh ${exercise} ${action}`;
+  const command = `/app/vulnerabilities/run_container.sh ${exercise} ${action} ${req.hostname}`;
   console.debug(`run command: ${command}`);
   exec(command, (error, stdout, stderr) => {
     if (error) {
