@@ -94,6 +94,9 @@ mysqli_close($conn);
         </div>
       </div>
     </form>
+    <div class="text-left">
+      <p>Don't have an account? <a href="register.php">Register here</a></p>
+    </div>
   </div>
   <?php require_once('footer.php'); ?>
 </body>

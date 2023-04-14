@@ -29,9 +29,8 @@ router.post('/', async (req, res) => {
       res.status(500).send(stderr);
       return;
     }
-
-    console.debug(`stdout: ${stdout}`);
     console.debug(`stderr: ${stderr}`);
+    console.debug(`stdout: ${stdout}`);
     res.send(stdout);
   });
 });
