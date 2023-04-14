@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Nav, Alert } from 'react-bootstrap';
 import Footer from '../../Footer';
 import Header from '../../Header';
+import extractLink from '../../extractLink';
 const { server, serverIp } = require('../../config');
 
 function ProfilePage() {
@@ -64,24 +65,8 @@ function ProfilePage() {
       });
   };
 
-  function extractLink() {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    const matches = results.match(urlRegex);
-
-    if (!matches) {
-      return results;
-    }
-    
-    const linkText = results.replace(matches[0], '');
-    const serverUrlRegex = /(https?:\/\/)(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})(:\d{1,5})?/g;
-    const linkUrl = matches[0].replace(serverUrlRegex, `$1${serverIp}$3`);
-  
-
-    return (
-      <div className="result">
-        {linkText}{linkUrl && <a href={linkUrl} target="_blank" rel="noopener noreferrer" style={{ color: "blue" }}>{linkUrl}</a>}
-      </div>
-    );
+  function addLinkForResult() {
+    return extractLink(results, "");
   }
 
   const handleUpClick = () => {
@@ -163,7 +148,7 @@ function ProfilePage() {
 
       <div className="container mt-3">
         <h3>Results:</h3>
-        <pre>{extractLink()}</pre>
+        <pre>{addLinkForResult()}</pre>
       </div>
     </div>
   );
