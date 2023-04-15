@@ -49,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["id"] = $row["id"];
     $_SESSION["username"] = $row["username"];
     $_SESSION["role"] = $row["role"];
+    setcookie('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTY4MTA0Njc1MX0.dEIytAcT8v5oFvfL4dqcdsho4GA0LqDigF4AvH7aSFU', time() + 3600);
 
     // Redirect the user to their profile page
     #header("Location: profile.php");

@@ -96,7 +96,7 @@ app.use(passport.session({}));
 
 //Routes
 app.get('/', (req, res) => {
-    res.send('Test Home Page');
+    res.send('You can log in to your own account on "/login" using the following credentials: user1: user1pass');
 });
 
 app.get('/login',

@@ -57,7 +57,7 @@ function SAML() {
   };
 
   function addLinkForResult() {
-    return extractLink(results, "login");
+    return extractLink(results, "");
   }
 
   const handleUpClick = () => {
