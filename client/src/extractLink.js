@@ -21,7 +21,7 @@ function extractLink(results, fileName) {
         return results;
     }
 
-    const linkText = results.replace(matches[0], '');
+    const linkText = results.replace(matches[0], '').trim() + ": ";
     const linkUrl = matches[0] + "/" + fileName;
 
     return (

@@ -4,6 +4,7 @@ import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from "./components/LoginForm/LoginForm"
 import UserProfile from "./components/UserProfile/UserProfile";
+import Commands from "./components/Commands/Commands"
 import HTMLInjection from "./components/HTMLInjection/HTMLInjection"
 import RegisterForm from "./components/Register/Register";
 import SAML from "./components/SAML/SAML";
@@ -52,6 +53,7 @@ function App() {
           <Col hidden={!isLoggedIn} md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }}>
             <Nav defaultActiveKey="/home" className="flex-column">
               <h5 style={{ color: "lightskyblue", textAlign: "center" }}>Excercises</h5>
+              <Nav.Link style={{ textAlign: "center" }} href="/commands">Commands</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/userprofile">SQL Injection</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/HTMLInjection">HTML Injection</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/SAML">SAML</Nav.Link>
@@ -67,7 +69,8 @@ function App() {
           <Col md={10}>
             <Routes>
               <Route path="/" element={<LoginForm onLogin={handleLogin}/>} />
-              <Route path="/userprofile/" element={<UserProfile />} />
+              <Route path="/commands" element={<Commands />} />
+              <Route path="/userprofile" element={<UserProfile />} />
               <Route path="/register" element={<RegisterForm onLogin={handleLogin}/>} />
               <Route path="/HTMLInjection" element={<HTMLInjection />} />
               <Route path="/SAML" element={<SAML />} />
