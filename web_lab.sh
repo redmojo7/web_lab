@@ -27,10 +27,18 @@ stop_app() {
   echo "Application stopped!"
 }
 
+# Function to restart the application
+restart_app() {
+  echo "Restarting the application..."
+  stop_app
+  start_app
+  echo "Application restarted!"
+}
+
 # Check if the "action" argument is provided
 if [ -z "$1" ]; then
-  echo "Please provide an action (start/stop)."
-  echo "Example: web_lab.sh start/stop."
+  echo "Invalid action. Please provide either start, stop or restart."
+  echo "Example: web_lab.sh start/stop/restart."
   exit 1
 fi
 
@@ -42,9 +50,12 @@ start)
 stop)
   stop_app
   ;;
+restart)
+  restart_app
+  ;;
 *)
-  echo "Invalid action. Please provide either start or stop."
-  echo "Example: web_lab.sh start/stop."
+  echo "Invalid action. Please provide either start, stop or restart."
+  echo "Example: web_lab.sh start/stop/restart."
   exit 1
   ;;
 esac
