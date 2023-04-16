@@ -3,7 +3,7 @@
 # Function to start the application
 start_app() {
   echo "Starting the application..."
-  docker-compose up -d
+  docker-compose up --build -d
   docker ps
   echo "Application started!"
 }

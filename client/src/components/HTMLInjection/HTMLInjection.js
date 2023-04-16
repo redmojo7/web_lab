@@ -59,7 +59,7 @@ function HTMLInjection() {
   };
 
   function addLinkForResult() {
-    return extractLink(results, "register.php");
+    return extractLink(results, "chat.php");
   }
 
   const handleUpClick = () => {
