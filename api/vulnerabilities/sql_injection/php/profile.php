@@ -24,8 +24,18 @@ if (mysqli_num_rows($result) > 0) {
   echo "Error: User data not found.";
 }
 
+// Fetch all user data if logged-in user is admin
+if ($role === 'admin') {
+  $sql = "SELECT * FROM users";
+  $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($result) > 0) {
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+  }
+}
+
 // Close the database connection
 mysqli_close($conn);
+
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +51,37 @@ mysqli_close($conn);
       <li><strong>Username:</strong> <?php echo $username; ?></li>
       <li><strong>Role:</strong> <?php echo $role; ?></li>
     </ul>
+    <?php if ($role === 'admin') { ?>
+      <hr>
+      <h2>All Users:</h2>
+      <?php if (isset($users)) { ?>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($users as $user) { ?>
+              <tr>
+                <td><?php echo $user['username']; ?></td>
+                <td><?php echo $user['role']; ?></td>
+                <td>
+                  <form action="delete-user.php" method="POST">
+                    <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </form>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      <?php } else { ?>
+        <p>No users found.</p>
+      <?php } ?>
+    <?php } ?>
   </div>
 
   <?php require_once('footer.php'); ?>
