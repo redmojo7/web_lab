@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import extractLink from '../../extractLink';
+import { extractLink, extractUrlFromResult } from '../../extractLink';
 const { server, serverIp} = require('../../config');
 
 
@@ -60,6 +60,10 @@ function SAML() {
     return extractLink(results, "");
   }
 
+  function addIFrameForResult() {
+    return extractUrlFromResult(results, "");
+  }
+
   const handleUpClick = () => {
     handleRunClick('saml', 'start');
   };
@@ -98,7 +102,7 @@ function SAML() {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            picture
+            
           </div>
           <div className="col-sm-6">
             <div className="form-group">
@@ -126,10 +130,22 @@ function SAML() {
         </div>
       </div>
 
-      <div className="container mt-3">
-        <h3>Results:</h3>
-        <pre>{addLinkForResult()}</pre>
-      </div>
+      <br />
+      {results && (
+        <div className="container mt-3">
+          <h3>Results:</h3>
+          <pre>{addLinkForResult()}</pre>
+          <br />
+        </div>
+      )}
+      {results && results.includes('http') ? (
+        <div className="container">
+          <h3>Iframe:</h3>
+          <div className="flex-grow-1">
+            <iframe className="w-100" style={{ height: "500px" }} src={addIFrameForResult()}></iframe>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

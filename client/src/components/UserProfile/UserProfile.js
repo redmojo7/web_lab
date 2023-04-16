@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Nav, Alert } from 'react-bootstrap';
 import Footer from '../../Footer';
 import Header from '../../Header';
-import extractLink from '../../extractLink';
+import { extractLink, extractUrlFromResult } from '../../extractLink';
 const { server, serverIp } = require('../../config');
 
 function ProfilePage() {
@@ -69,6 +69,10 @@ function ProfilePage() {
     return extractLink(results, "");
   }
 
+  function addIFrameForResult() {
+    return extractUrlFromResult(results, "");
+  }
+
   const handleUpClick = () => {
     handleRunClick('sql_injection', 'start');
   };
@@ -107,7 +111,7 @@ function ProfilePage() {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            picture
+            
           </div>
           <div className="col-sm-6">
             <ul className="list-group">
@@ -146,10 +150,22 @@ function ProfilePage() {
         </div>
       </div>
 
-      <div className="container mt-3">
-        <h3>Results:</h3>
-        <pre>{addLinkForResult()}</pre>
-      </div>
+      <br />
+      {results && (
+        <div className="container mt-3">
+          <h3>Results:</h3>
+          <pre>{addLinkForResult()}</pre>
+          <br />
+        </div>
+      )}
+      {results && results.includes('http') ? (
+        <div className="container">
+          <h3>Iframe:</h3>
+          <div className="flex-grow-1">
+            <iframe className="w-100" style={{ height: "500px" }} src={addIFrameForResult()}></iframe>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

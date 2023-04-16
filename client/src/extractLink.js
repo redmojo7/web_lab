@@ -1,5 +1,18 @@
 import React from 'react';
 
+function extractUrlFromResult(results, fileName) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const matches = results.match(urlRegex);
+
+    if (!matches) {
+        return '';
+    }
+
+    const linkUrl = matches[0] + "/" + fileName;
+
+    return linkUrl;
+}
+
 function extractLink(results, fileName) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     const matches = results.match(urlRegex);
@@ -17,4 +30,4 @@ function extractLink(results, fileName) {
         </div>
     );
 }
-export default extractLink;
+export { extractLink, extractUrlFromResult };

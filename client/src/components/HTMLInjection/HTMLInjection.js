@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Nav } from 'react-bootstrap';
-import extractLink from '../../extractLink';
-const { server, serverIp} = require('../../config');
+import { extractLink, extractUrlFromResult } from '../../extractLink';
+const { server, serverIp } = require('../../config');
 
 
 function HTMLInjection() {
@@ -62,6 +62,10 @@ function HTMLInjection() {
     return extractLink(results, "chat.php");
   }
 
+  function addIFrameForResult() {
+    return extractUrlFromResult(results, "chat.php");
+  }
+
   const handleUpClick = () => {
     handleRunClick('sql_injection', 'start');
   };
@@ -100,7 +104,7 @@ function HTMLInjection() {
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
-            picture
+            
           </div>
           <div className="col-sm-6">
             <div className="form-group">
@@ -127,11 +131,22 @@ function HTMLInjection() {
           </div>
         </div>
       </div>
-
-      <div className="container mt-3">
-        <h3>Results:</h3>
-        <pre>{addLinkForResult()}</pre>
-      </div>
+      <br />
+      {results && (
+        <div className="container mt-3">
+          <h3>Results:</h3>
+          <pre>{addLinkForResult()}</pre>
+          <br />
+        </div>
+      )}
+      {results && results.includes('http') ? (
+        <div className="container">
+          <h3>Iframe:</h3>
+          <div className="flex-grow-1">
+            <iframe className="w-100" style={{ height: "500px" }} src={addIFrameForResult()}></iframe>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
