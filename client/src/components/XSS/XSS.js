@@ -52,14 +52,14 @@ function HTMLInjection() {
 
   return (
     <div className="container" style={{ backgroundColor: "#e9ecef" }}>
-      <h1 className="mb-4 text-dark">HTML Injection</h1>
+      <h1 className="mb-4 text-dark">XSS</h1>
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start HTML Injection Instance</button>
-            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop HTML Injection Instance</button>
+            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start XSS Instance</button>
+            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop XSS Instance</button>
           </div>
 
           <div className="col-sm-3">
