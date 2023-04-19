@@ -7,7 +7,7 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 - [x] Injection (SQL Injection)
 - [x] Cross-Site Scripting (XSS)
 - [x] Broken User Authentication (Security Assertion Markup Language (SAML))
-- [ ] Broken Object Level Authorization
+- [x] Broken Object Level Authorization
 - [ ] Excessive Data Exposure
 - [ ] Lack of Resources & Rate Limiting
 - [ ] Broken Function Level Authorization
@@ -113,6 +113,11 @@ npm run start
 ## License
 
 This project is licensed under the terms of the MIT License. See the [LICENSE](LICENSE) file for details.
+
+This project uses the following open source components:
+
+- [docker-test-saml-idp](https://github.com/kristophjunge/docker-test-saml-idp) under the MIT license by Kristoph Junge
+- [simplesamlphp](https://github.com/simplesamlphp/simplesamlphp) UNDER GNU license by SimpleSAMLphp Community
 
 ## Contact
 
