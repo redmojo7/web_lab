@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    build: .
+    container_name: bola_web
+    restart: always
+    ports:
+      - "9300:9300"
+    networks:
+      web_lab_my_network:
+        aliases:
+          - bola_network
+
+networks:
+  web_lab_my_network:
+    external:
+      name: web_lab_my_network

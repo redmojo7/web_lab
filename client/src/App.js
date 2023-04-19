@@ -8,6 +8,7 @@ import Commands from "./components/Commands/Commands"
 import XSS from "./components/XSS/XSS"
 import RegisterForm from "./components/Register/Register";
 import SAML from "./components/SAML/SAML";
+import BOLA from "./components/BOLA/BOLA"
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import auth from "./components/Auth/Auth";
 import Footer from './Footer';
@@ -56,7 +57,7 @@ function App() {
               <Nav.Link style={{ textAlign: "center" }} href="/userprofile">SQL Injection</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/xss">XSS</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/saml">SAML</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 4</Nav.Link>
+              <Nav.Link style={{ textAlign: "center" }} href="/bola">BOLA</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 5</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 6</Nav.Link>
               <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 7</Nav.Link>
@@ -73,6 +74,7 @@ function App() {
               <Route path="/register" element={<RegisterForm onLogin={handleLogin}/>} />
               <Route path="/xss" element={<XSS />} />
               <Route path="/saml" element={<SAML />} />
+              <Route path="/bola" element={<BOLA />} />
             </Routes>
           </Col>
         </Row>

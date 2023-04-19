@@ -4,7 +4,7 @@ import { extractLink, extractUrlFromResult } from '../../extractLink';
 const { server } = require('../../config');
 
 
-function HTMLInjection() {
+function BOLA() {
   const [results, setResults] = useState('');
 
   const token = localStorage.getItem('token');
@@ -31,41 +31,42 @@ function HTMLInjection() {
   };
 
   function addLinkForResult() {
-    return extractLink(results, "chat.php");
+    return extractLink(results, "");
   }
 
   function addIFrameForResult() {
-    return extractUrlFromResult(results, "chat.php");
+    return extractUrlFromResult(results, "");
   }
 
   const handleUpClick = () => {
-    handleRunClick('sql_injection', 'start');
+    handleRunClick('bola', 'start');
   };
 
   const handleDownClick = () => {
-    handleRunClick('sql_injection', 'stop');
+    handleRunClick('bola', 'stop');
   };
 
   useEffect(() => {
-    handleRunClick('sql_injection', 'start');
+    handleRunClick('bola', 'start');
   }, []);
 
   return (
     <div className="container" style={{ backgroundColor: "#e9ecef" }}>
-      <h1 className="mb-4 text-dark">XSS(Cross-Site Scripting)</h1>
+      <h1 className="mb-4 text-dark">Broken Object Level Authorization (BOLA)</h1>
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start XSS Instance</button>
-            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop XSS Instance</button>
+            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start BOLA Instance</button>
+            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop BOLA Instance</button>
           </div>
 
           <div className="col-sm-3">
           </div>
         </div>
       </div>
+
       <br />
       {results && (
         <div className="container">
@@ -83,7 +84,7 @@ function HTMLInjection() {
       {results && results.includes('http') ? (
         <div className="container">
           <div className="flex-grow-1">
-            <iframe className="w-100" style={{ height: "500px" }} src={addIFrameForResult()}></iframe>
+            <iframe className="w-100" style={{ height: "500px" }} src={addIFrameForResult()} ></iframe>
           </div>
         </div>
       ) : null}
@@ -91,4 +92,4 @@ function HTMLInjection() {
   );
 }
 
-export default HTMLInjection;
+export default BOLA;
