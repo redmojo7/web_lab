@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">Profile Information</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-borderless">
+                        <tbody>
+                          <tr>
+                            <th scope="row">Name</th>
+                            <td><%= user.name %></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Email</th>
+                            <td><%= user.email %></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Birthday</th>
+                            <td><%= user.birthday %></td>
+                          </tr>
+                          <tr>
+                            <th scope="row">Address</th>
+                            <td><%= address.street %>, <%= address.city %>, <%= address.state %>, <%= address.country %>, <%= address.postal_code %></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

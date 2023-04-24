@@ -1,0 +1,33 @@
+<h1>Welcome to my website!</h1>
+<div class="container">
+  <h1 class="my-4">Login</h1>
+  <% if (error) { %>
+    <div class="col-sm-6 alert alert-danger"><%= error %></div>
+  <% } %>
+  <form method="post" action="/api/login">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="email">Email:</label>
+      <div class="col-sm-4">
+        <input type="email" class="form-control" id="email" name="email" value="<%= email %>"  placeholder="Enter email" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="password">Password:</label>
+      <div class="col-sm-4">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-4 offset-sm-2 text-center">
+        <button type="submit" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </form>
+  <div class="text-left">
+    <p>Don't have an account? <a href="/api/register">Register here</a> or <a href="/api/anonymous">Log in as anonymous</a></p>
+  </div>
+  <div class="text-left">
+    <p>Forgot your password? <a href="/api/resetpasswd">Reset password</a></p>
+  </div>
+  
+</div>

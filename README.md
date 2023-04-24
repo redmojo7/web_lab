@@ -8,7 +8,7 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 - [x] Cross-Site Scripting (XSS)
 - [x] Broken User Authentication (Security Assertion Markup Language (SAML))
 - [x] Broken Object Level Authorization
-- [ ] Excessive Data Exposure
+- [x] Excessive Data Exposure
 - [ ] Lack of Resources & Rate Limiting
 - [ ] Broken Function Level Authorization
 - [ ] Mass Assignment

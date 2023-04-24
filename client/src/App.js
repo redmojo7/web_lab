@@ -9,6 +9,7 @@ import XSS from "./components/XSS/XSS"
 import RegisterForm from "./components/Register/Register";
 import SAML from "./components/SAML/SAML";
 import BOLA from "./components/BOLA/BOLA"
+import EDE from "./components/EDE/EDE"
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import auth from "./components/Auth/Auth";
 import Footer from './Footer';
@@ -53,17 +54,17 @@ function App() {
           <Col hidden={!isLoggedIn} md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }}>
             <Nav defaultActiveKey="/home" className="flex-column">
               <h5 style={{ color: "lightskyblue", textAlign: "center" }}>Excercises</h5>
-              <Nav.Link style={{ textAlign: "center" }} href="/commands">Commands</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/userprofile">SQL Injection</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/xss">XSS</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/saml">SAML</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/bola">BOLA</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 5</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 6</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 7</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 8</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 9</Nav.Link>
-              <Nav.Link style={{ textAlign: "center" }} href="/home">Excercise 10</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/commands">Commands</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/userprofile">SQL Injection</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/xss">Cross-Site Scripting</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/saml">Broken User Authentication</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/bola">Broken Object Level Authorization</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/ede">Excessive Data Exposure</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 6</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 7</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 8</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 9</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 10</Nav.Link>
             </Nav>
           </Col>
           <Col md={10}>
@@ -75,6 +76,7 @@ function App() {
               <Route path="/xss" element={<XSS />} />
               <Route path="/saml" element={<SAML />} />
               <Route path="/bola" element={<BOLA />} />
+              <Route path="/ede" element={<EDE />} />
             </Routes>
           </Col>
         </Row>
