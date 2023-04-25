@@ -30,6 +30,36 @@ const pool = new Pool({
 
 console.debug(`[api.js]: ${process.env.DB_USER} ${process.env.DB_HOST} ${process.env.DB_NAME} ${process.env.DB_PASSWORD}`);
 
+const MAX_RETRIES = 5;
+const RETRY_INTERVAL = 1000; // in milliseconds
+
+
+let retries = 0;
+
+function connect() {
+  console.log(`Attempting to connect to database (retry ${retries + 1} of ${MAX_RETRIES})`);
+  
+  pool.connect((err, client, release) => {
+    if (err) {
+      release();
+      
+      if (retries < MAX_RETRIES) {
+        retries++;
+        setTimeout(connect, RETRY_INTERVAL);
+      } else {
+        console.error(`Failed to connect to database after ${MAX_RETRIES} attempts. Exiting...`);
+        process.exit(1);
+      }
+    } else {
+      console.log('Successfully connected to database');
+    }
+  });
+}
+// connect to the database
+connect();
+
+
+
 apiRouter.post('/login', async (req, res) => {
   const { email, password } = req.body;
   console.debug(`[login]: ${email} ${password}`)
@@ -52,7 +82,7 @@ apiRouter.post('/login', async (req, res) => {
           // Update the database with the IP address
           pool.query('UPDATE users SET ip = $1 WHERE id = $2', [ipAddress, user.id])
         });
-        res.send('Logged in');
+        return res.redirect(`/api/profile/${user.id}`);
       } else {
         // If the password doesn't match, redirect back to the login page with an error message
         res.render('index', { title: 'Login', email: email, error: 'Invalid email or password' });
@@ -257,17 +287,16 @@ apiRouter.get('/profile/:id', async (req, res) => {
     // Retrieve user's information from the database
     const userResult = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
     const user = userResult.rows[0];
-
+    console.debug(`[profile] user: ${JSON.stringify(user)}`);
     // Retrieve user's address from the database
     const addressResult = await pool.query('SELECT * FROM addresses WHERE user_id = $1', [userId]);
     const address = addressResult.rows[0];
-
-    res.render('profile', { title: 'Profile', user, address });
+    user.password = ""; // remove password from user object
+    return res.render('profile', { title: 'Profile', user, address });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal server error');
   }
-  res.render('profile', { title: 'Profile' });
 });
 
 // export apiRouter

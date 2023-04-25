@@ -45,7 +45,8 @@ setcookie('token', 'This_is_a_fake_cookie_for_security_test', time() + 3600);
         const handleClick = () => {
             var message = chatInput.value;
             chatInput.value = '';
-            var chatBubble = '<div class="chat-bubble">' + '<strong>Me:</strong> \t' + message + '</div>';
+            var chatBubble = '<div class="chat-bubble">' + '<strong>Me:</strong> \t' 
+                + message + '</div>';
             chatArea.innerHTML += chatBubble;
 
             fetch(`https://api.duckduckgo.com/?q=${message}&format=json`)

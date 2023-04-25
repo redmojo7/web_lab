@@ -12,12 +12,27 @@ $username = getenv("DB_USER");
 $password = getenv("DB_PASSWORD");
 $dbname = getenv("DB_NAME");
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$max_retries = 5;
+$retry_delay = 3;
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+$retry_count = 0;
+$connected = false;
+
+while ($retry_count < $max_retries && !$connected) {
+    // Attempt to connect to the database
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    // Check connection
+    if (!$conn) {
+        $retry_count++;
+        sleep($retry_delay);
+    } else {
+        $connected = true;
+    }
+}
+
+if (!$connected) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
 // Check if the user has submitted the login form
@@ -33,7 +48,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   //$sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
   
   // Search the users table for the entered username and password
-  $sql = "SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "'";
+  $sql = "SELECT * FROM users WHERE username='" . $username . "' 
+          AND password='" . $password . "'";
   //$sql = "SELECT * FROM users WHERE username='admin'";
   //echo "Login SQL query: " . $sql . "<br>";
   
