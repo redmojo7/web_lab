@@ -38,11 +38,11 @@ let retries = 0;
 
 function connect() {
   console.log(`Attempting to connect to database (retry ${retries + 1} of ${MAX_RETRIES})`);
-  
+
   pool.connect((err, client, release) => {
     if (err) {
       release();
-      
+
       if (retries < MAX_RETRIES) {
         retries++;
         setTimeout(connect, RETRY_INTERVAL);
@@ -82,6 +82,8 @@ apiRouter.post('/login', async (req, res) => {
           // Update the database with the IP address
           pool.query('UPDATE users SET ip = $1 WHERE id = $2', [ipAddress, user.id])
         });
+        // Add the user ID to the session
+        req.session.userId = user.id;
         return res.redirect(`/api/profile/${user.id}`);
       } else {
         // If the password doesn't match, redirect back to the login page with an error message
@@ -99,7 +101,7 @@ apiRouter.post('/login', async (req, res) => {
 
 
 apiRouter.get('/register', async (req, res) => {
-  res.render('register', { title: 'Register',data: {} });
+  res.render('register', { title: 'Register', data: {} });
 });
 
 apiRouter.post('/register/action', async (req, res) => {
@@ -282,7 +284,13 @@ apiRouter.post('/reset/action', async (req, res) => {
 
 apiRouter.get('/profile/:id', async (req, res) => {
   const userId = req.params.id;
-
+  const sessionUserId = req.session.userId;
+  console.debug(`[profile] userId: ${userId}`);
+  console.debug(`[profile] sessionUserId: ${sessionUserId}`);
+  if (userId != sessionUserId) {
+    // If the user ID isn't in the session, redirect to the login page
+    return res.redirect('/');
+  }
   try {
     // Retrieve user's information from the database
     const userResult = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);
