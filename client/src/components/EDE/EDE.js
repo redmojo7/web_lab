@@ -6,6 +6,7 @@ const { server } = require('../../config');
 
 function EDE() {
   const [results, setResults] = useState('');
+  const [iframeKey, setIframeKey] = useState(Date.now());
 
   const token = localStorage.getItem('token');
 
@@ -23,6 +24,7 @@ function EDE() {
     })
       .then(response => {
         setResults(response.data);
+        setIframeKey(Date.now()); // set a new key to force iframe reload
         //setResults(response.data.replace(urlRegex, '<a href="$&">$&</a>'));
       })
       .catch(error => {
@@ -35,7 +37,7 @@ function EDE() {
   }
 
   function addIFrameForResult() {
-    return extractUrlFromResult(results, "");
+    return extractUrlFromResult(results, "") + `?key=${iframeKey}`;
   }
 
   const handleUpClick = () => {
@@ -84,7 +86,7 @@ function EDE() {
       {results && results.includes('http') ? (
         <div className="container">
           <div className="flex-grow-1">
-            <iframe className="w-100" style={{ height: "500px" }} src={addIFrameForResult()} ></iframe>
+            <iframe key={iframeKey} className="w-100" style={{ height: "500px" }} src={addIFrameForResult()} ></iframe>
           </div>
         </div>
       ) : null}

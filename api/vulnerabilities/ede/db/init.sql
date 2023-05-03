@@ -40,4 +40,4 @@ VALUES
 INSERT INTO addresses (user_id, street, city, state, country, postal_code)
 VALUES
     (1, '123 Main St', 'Perth', 'WA', 'AU', '6010'),
-    (2, '6 Chrome', 'Cobram', 'VIC', 'AU', '3644');
+    (2, '86B Fitzroy Rd', 'Perth', 'WA', 'AU', '6102');
