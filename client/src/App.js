@@ -10,6 +10,7 @@ import RegisterForm from "./components/Register/Register";
 import SAML from "./components/SAML/SAML";
 import BOLA from "./components/BOLA/BOLA"
 import EDE from "./components/EDE/EDE"
+import LORRL from "./components/LORRL/LORRL";
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
 import auth from "./components/Auth/Auth";
 import Footer from './Footer';
@@ -60,7 +61,7 @@ function App() {
               <Nav.Link style={{ textAlign: "left" }} href="/saml">Broken User Authentication</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/bola">Broken Object Level Authorization</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/ede">Excessive Data Exposure</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 6</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/lorrl">Lack of Resources & Rate Limiting</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 7</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 8</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 9</Nav.Link>
@@ -77,6 +78,7 @@ function App() {
               <Route path="/saml" element={<SAML />} />
               <Route path="/bola" element={<BOLA />} />
               <Route path="/ede" element={<EDE />} />
+              <Route path="/lorrl" element={<LORRL />} />
             </Routes>
           </Col>
         </Row>

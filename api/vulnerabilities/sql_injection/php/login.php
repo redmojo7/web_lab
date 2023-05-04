@@ -38,17 +38,11 @@ if (!$connected) {
 // Check if the user has submitted the login form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Get the values entered in the login form
-  //$username = mysqli_real_escape_string($conn, $_POST["username"]);
-  //$password = mysqli_real_escape_string($conn, $_POST["password"]);
-
-  $username = $_POST["username"];
-  $password = $_POST["password"];
+  $username = mysqli_real_escape_string($conn, $_POST["username"]);
+  $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
   // Search the users table for the entered username and password
-  $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-  
-  // Search the users table for the entered username and password
-  //$sql = "SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "'";
+  $sql = "SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "'";
   //$sql = "SELECT * FROM users WHERE username='admin'";
   //echo "Login SQL query: " . $sql . "<br>";
   
@@ -95,7 +89,7 @@ mysqli_close($conn);
     <div class="alert <?php echo isset($response) ? 'alert-danger' : 'd-none'; ?>">
       <?php echo $response; ?>
     </div>
-    <form name='index' method="post">
+    <form name='login' method="post">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label" for="username">Username:</label>
         <input class="col-sm-4" type="text" class="form-control" name="username" placeholder="Username" required>
