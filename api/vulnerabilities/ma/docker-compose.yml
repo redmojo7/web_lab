@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: ma_web
+    command: python manage.py runserver 0.0.0.0:9500
+    ports:
+      - "9500:9500"

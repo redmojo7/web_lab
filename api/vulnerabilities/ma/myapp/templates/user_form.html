@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h1 class="mt-5 mb-4 text-center">Create a new user</h1>
+            <form method="post" class="form-horizontal">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                {% if field.name == 'username' or field.name == 'password' %}
+                <div class="form-group">
+                    <label class="col-sm-4 col-form-label">{{ field.label_tag }}</label>
+                    <div class="col-sm-8">
+                        {{ field }}
+                        {% if field.help_text %}
+                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <input type="submit" value="Create" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

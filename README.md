@@ -11,7 +11,7 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 - [x] Excessive Data Exposure
 - [x] Lack of Resources & Rate Limiting
 - [ ] Broken Function Level Authorization
-- [ ] Mass Assignment
+- [x] Mass Assignment
 - [ ] Security Misconfiguration
 - [ ] Improper Assets Management
 - [ ] Insufficient Logging & Monitoring
