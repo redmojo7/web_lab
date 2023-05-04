@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 X_FRAME_OPTIONS = 'ALLOWALL'
 
+APPEND_SLASH = False
+
+
 
 # Application definition
 

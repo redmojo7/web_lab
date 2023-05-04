@@ -2,29 +2,57 @@
 
 {% block content %}
 <div class="container">
-  <h1>Welcome, {{ admin.username }}!</h1>
-  <p>You have administrator privileges.</p>
-  
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Is Admin</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for user in users %}
-      <tr>
-        <td>{{ user.username }}</td>
-        <td>********</td>
-        <td>{{ user.is_admin }}</td>
-        
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  
+    <h1>Welcome, {{ admin.username }}!</h1>
+    <p>You have administrator privileges.</p>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Is Admin</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr id="user-{{ user.id }}">
+                <td>{{ user.username }}</td>
+                <td{{ user.password }}td>
+                <td>{{ user.is_admin }}</td>
+                <td>
+                    {% if user != admin %}
+                    <form method="POST" >
+                        {% csrf_token %}
+                        <button type="button" class="btn btn-danger btn-sm"
+                            onclick="deleteUser({{ user.id }})">Delete</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
+<script>
+    function deleteUser(userId) {
+        //var userId = $(this).data("user-id");
+        $.ajax({
+            url: "/delete-user/" + userId + "/",
+            method: "POST",
+            headers: { "X-CSRFToken": $('input[name="csrfmiddlewaretoken"]').val() },
+            success: function (data) {
+                // remove the user from the table
+                $("#user-" + userId).remove();
+                // show a success message
+                alert("User deleted successfully!");
+            },
+            error: function (xhr, status, error) {
+                alert("Error deleting user: " + error);
+            }
+        });
+    }
+
+</script>
+
 {% endblock %}

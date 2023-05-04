@@ -20,4 +20,5 @@ from myapp.views import UserView
 urlpatterns = [
     #path('admin/', admin.site.urls),
     path('user/', UserView.as_view(), name='user'),
+    path('delete-user/<int:user_id>/', UserView.delete_user, name='delete_user'),
 ]

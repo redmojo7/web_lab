@@ -21,6 +21,12 @@
                 {% endif %}
                 {% endfor %}
 
+                {% if error_message %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8">
                         <input type="submit" value="Create" class="btn btn-primary">
