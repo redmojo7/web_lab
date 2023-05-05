@@ -21,8 +21,8 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 Here's a preview of what the projects looks like:
 
 <div style="border: 1px solid #444; padding: 10px;">
-  <img src="./assets/screenshot-login.png" alt="web_lab login Screenshot" />
-  <img src="./assets/screenshot-main.png" alt="web_lab main Screenshot" />
+  <img src="./assets/screensho_login.png" alt="web_lab login Screenshot" />
+  <img src="./assets/screenshot_main.png" alt="web_lab main Screenshot" />
 </div>
 
 
