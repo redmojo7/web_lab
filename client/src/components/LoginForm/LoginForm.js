@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './LoginForm.css';
-import { Nav } from 'react-bootstrap';
 import Auth from "../Auth/Auth"
 
 const { server } = require('../../config');

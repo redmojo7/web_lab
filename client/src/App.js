@@ -13,10 +13,11 @@ import MA from "./components/MA/MA"
 import SM from "./components/SM/SM"
 import EDE from "./components/EDE/EDE"
 import LORRL from "./components/LORRL/LORRL";
-import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import auth from "./components/Auth/Auth";
 import Footer from './Footer';
 import Header from './Header';
+import Navigation from './Navigation';
 const { server } = require('./config');
 
 
@@ -49,33 +50,16 @@ function App() {
 
   return (
     <div className="App">
-      <div hidden={!isLoggedIn}>
-        <Header />
-      </div>
+        <Header hidden={!isLoggedIn} />
       <Router>
         <Row>
-          <Col hidden={!isLoggedIn} md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }}>
-            <Nav defaultActiveKey="/home" className="flex-column">
-              <h5 style={{ color: "lightskyblue", textAlign: "center" }}>Excercises</h5>
-              <Nav.Link style={{ textAlign: "left" }} href="/commands">Commands</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/userprofile">SQL Injection</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/xss">Cross-Site Scripting</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/saml">Broken User Authentication</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/bola">Broken Object Level Authorization</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/ede">Excessive Data Exposure</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/lorrl">Lack of Resources & Rate Limiting</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/ma">Mass Assignment</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/sm">Excercise 8</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 9</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 10</Nav.Link>
-            </Nav>
-          </Col>
+          <Navigation hidden={!isLoggedIn}/>
           <Col md={10}>
             <Routes>
-              <Route path="/" element={<LoginForm onLogin={handleLogin}/>} />
+              <Route path="/" element={<LoginForm onLogin={handleLogin} />} />
               <Route path="/commands" element={<Commands />} />
               <Route path="/userprofile" element={<UserProfile />} />
-              <Route path="/register" element={<RegisterForm onLogin={handleLogin}/>} />
+              <Route path="/register" element={<RegisterForm onLogin={handleLogin} />} />
               <Route path="/xss" element={<XSS />} />
               <Route path="/saml" element={<SAML />} />
               <Route path="/bola" element={<BOLA />} />
@@ -87,9 +71,7 @@ function App() {
           </Col>
         </Row>
       </Router>
-      <div hidden={!isLoggedIn}>
-        <Footer />
-      </div>
+      <Footer hidden={!isLoggedIn} />
     </div>
   );
 }

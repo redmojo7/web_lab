@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Nav, Alert } from 'react-bootstrap';
-import Footer from '../../Footer';
-import Header from '../../Header';
+import { Alert } from 'react-bootstrap';
 import { extractLink, extractUrlFromResult } from '../../extractLink';
 const { server, serverIp } = require('../../config');
 
