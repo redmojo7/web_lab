@@ -18,7 +18,8 @@ from django.urls import path
 from myapp.views import UserView
 
 urlpatterns = [
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('', UserView.as_view(), name='user'),
     path('user/', UserView.as_view(), name='user'),
     path('delete-user/<int:user_id>/', UserView.delete_user, name='delete_user'),
 ]
