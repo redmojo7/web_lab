@@ -12,7 +12,7 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 - [x] Lack of Resources & Rate Limiting
 - [ ] Broken Function Level Authorization
 - [x] Mass Assignment
-- [ ] Security Misconfiguration
+- [x] Security Misconfiguration
 - [ ] Improper Assets Management
 - [ ] Insufficient Logging & Monitoring
 

@@ -10,6 +10,7 @@ import RegisterForm from "./components/Register/Register";
 import SAML from "./components/SAML/SAML";
 import BOLA from "./components/BOLA/BOLA"
 import MA from "./components/MA/MA"
+import SM from "./components/SM/SM"
 import EDE from "./components/EDE/EDE"
 import LORRL from "./components/LORRL/LORRL";
 import { Navbar, Nav, NavDropdown, Container, Row, Col } from 'react-bootstrap';
@@ -64,7 +65,7 @@ function App() {
               <Nav.Link style={{ textAlign: "left" }} href="/ede">Excessive Data Exposure</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/lorrl">Lack of Resources & Rate Limiting</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/ma">Mass Assignment</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 8</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/sm">Excercise 8</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 9</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 10</Nav.Link>
             </Nav>
@@ -81,6 +82,7 @@ function App() {
               <Route path="/ede" element={<EDE />} />
               <Route path="/lorrl" element={<LORRL />} />
               <Route path="/ma" element={<MA />} />
+              <Route path="/sm" element={<SM />} />
             </Routes>
           </Col>
         </Row>

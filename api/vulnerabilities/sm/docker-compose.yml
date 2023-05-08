@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+      
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sm_web
+    restart: always
+    ports:
+      - "9600:9600"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - redis

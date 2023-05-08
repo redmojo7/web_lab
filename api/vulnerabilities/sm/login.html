@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <title>User Login</title>
+
+    <head>
+        <title>User Login</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </head>
+</head>
+
+<body>
+    <div class="container">
+        <h1>User Login</h1>
+        <form id="login">
+            <div class="form-group row">
+                <label for="username" class="col-sm-2 col-form-label">Username:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="username">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="password" class="col-sm-2 col-form-label">Password:</label>
+                <div class="col-sm-4">
+                    <input type="password" class="form-control" id="password">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-4">
+                    <button type="button" class="btn btn-primary" id="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                let username = $("#username").val();
+                let password = $("#password").val();
+
+                $.post("/login", { username: username, password: password })
+                    .done(function (data) {
+                        window.location.href = "/";
+                    })
+                    .fail(function (jqXHR, status, error) {
+                        if (jqXHR.status === 401) {
+                            let alertHtml = '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+                                'Wrong Username/Password!' +
+                                '<button type="button" class="close" data-dismiss="alert" aria-label="Close">' +
+                                '<span aria-hidden="true">&times;</span>' +
+                                '</button>' +
+                                '</div>';
+                            $("#login").prepend(alertHtml);
+                        }
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
