@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+
+<div class="container">
+  <h1><%= title %></h1>
+  <p>Welcome to the admin page!</p>
+
+  <!-- Display the list of books in a table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% books.forEach(book => { %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td>
+            <!-- Form to delete a book -->
+            <form id="delete-form-<%= book.id %>" class="d-inline">
+              <button type="button" class="btn btn-danger btn-sm" onclick="deleteBook(<%= book.id %>)">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('partials/footer') %>
+
+<script>
+  function deleteBook(bookId) {
+    fetch(`/api/v1/books/${bookId}`, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      if (response.ok) {
+        // Book deleted successfully, reload the page or update the book list
+        location.reload();
+      } else {
+        console.error('Error deleting book:', response.status);
+      }
+    })
+    .catch(error => {
+      console.error('Error deleting book:', error);
+    });
+  }
+</script>

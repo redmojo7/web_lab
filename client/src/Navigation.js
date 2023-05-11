@@ -14,9 +14,9 @@ function Navigation() {
               <Nav.Link style={{ textAlign: "left" }} href="/ede">Excessive Data Exposure</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/lorrl">Lack of Resources & Rate Limiting</Nav.Link>
               <Nav.Link style={{ textAlign: "left" }} href="/ma">Mass Assignment</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/sm">Excercise 8</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 9</Nav.Link>
-              <Nav.Link style={{ textAlign: "left" }} href="/home">Excercise 10</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/sm">Security Misconfiguration</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/iam">Improper Assets Management</Nav.Link>
+              <Nav.Link style={{ textAlign: "left" }} href="/ilm">Insufficient Logging & Monitoring</Nav.Link>
             </Nav>
           </Col>
     );

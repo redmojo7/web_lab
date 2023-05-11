@@ -13,6 +13,8 @@ import MA from "./components/MA/MA"
 import SM from "./components/SM/SM"
 import EDE from "./components/EDE/EDE"
 import LORRL from "./components/LORRL/LORRL";
+import ILM from "./components/ILM/ILM";
+import IAM from "./components/IAM/IAM";
 import { Row, Col } from 'react-bootstrap';
 import auth from "./components/Auth/Auth";
 import Footer from './Footer';
@@ -67,6 +69,8 @@ function App() {
               <Route path="/lorrl" element={<LORRL />} />
               <Route path="/ma" element={<MA />} />
               <Route path="/sm" element={<SM />} />
+              <Route path="/iam" element={<IAM />} />
+              <Route path="/ilm" element={<ILM />} />
             </Routes>
           </Col>
         </Row>

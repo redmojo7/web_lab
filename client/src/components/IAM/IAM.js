@@ -4,7 +4,7 @@ import { extractLink, extractUrlFromResult } from '../../extractLink';
 const { server } = require('../../config');
 
 
-function MA() {
+function IAM() {
   const [results, setResults] = useState('');
 
   const token = localStorage.getItem('token');
@@ -31,35 +31,35 @@ function MA() {
   };
 
   function addLinkForResult() {
-    return extractLink(results, "");
+    return extractLink(results, "api/v2/books");
   }
 
   function addIFrameForResult() {
-    return extractUrlFromResult(results, "");
+    return extractUrlFromResult(results, "api/v2/books");
   }
 
   const handleUpClick = () => {
-    handleRunClick('ma', 'start');
+    handleRunClick('iam', 'start');
   };
 
   const handleDownClick = () => {
-    handleRunClick('ma', 'stop');
+    handleRunClick('iam', 'stop');
   };
 
   useEffect(() => {
-    handleRunClick('ma', 'start');
+    handleRunClick('iam', 'start');
   }, []);
 
   return (
     <div className="container" style={{ backgroundColor: "#e9ecef" }}>
-      <h1 className="mb-4 text-dark">Mass Assignment (MA)</h1>
+      <h1 className="mb-4 text-dark">Improper Assets Management (IAM)</h1>
       <div className="container">
         <div className="row">
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start MA Instance</button>
-            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop MA Instance</button>
+            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start IAM Instance</button>
+            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop IAM Instance</button>
           </div>
 
           <div className="col-sm-3">
@@ -92,4 +92,4 @@ function MA() {
   );
 }
 
-export default MA;
+export default IAM;
