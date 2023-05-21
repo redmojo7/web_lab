@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { exec } = require('child_process');
 
-const commands = ['sql_injection', 'saml', 'bola', 'ede', 'ma', 'sm', 'iam'];
+const commands = ['sql_injection', 'saml', 'bola', 'ede', 'ma', 'sm', 'iam', 'ilm'];
 
 router.post('/', async (req, res) => {
   const { exercise, action } = req.body;

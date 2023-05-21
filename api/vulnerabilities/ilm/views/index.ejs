@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <%- include('header.ejs') %>
+<body>
+    <%- include('header.ejs') %>
+    
+    <main class="container">
+        <form action="/process" method="GET">
+            <label for="val">Enter a number:</label>
+            <input type="text" id="val" name="val">
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+
+  <%- include('footer.ejs') %>
+</body>
+</html>

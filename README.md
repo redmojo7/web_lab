@@ -14,7 +14,7 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 - [x] Mass Assignment
 - [x] Security Misconfiguration
 - [x] Improper Assets Management
-- [ ] Insufficient Logging & Monitoring
+- [x] Insufficient Logging & Monitoring
 
 # Preview
 

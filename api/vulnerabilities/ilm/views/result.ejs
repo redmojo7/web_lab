@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <%- include('header.ejs') %>
+<body>
+    <%- include('header.ejs') %>
+    
+    <% if (typeof error !== 'undefined' && error) { %>
+        <h1>Error</h1>
+        <p>Failed to parse input: <%= error %></p>
+      <% } else { %>
+        <h1>Success</h1>
+        <p>Parsed value: <%= value %></p>
+      <% } %>
+
+  <%- include('footer.ejs') %>
+</body>
+</html>

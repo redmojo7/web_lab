@@ -1,0 +1,11 @@
+version: '3'
+
+services:   
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ilm_web
+    restart: always
+    ports:
+      - "9700:9700"
