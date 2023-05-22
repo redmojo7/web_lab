@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs'); // set the view engine
@@ -12,19 +14,18 @@ app.get("/", (req, res) => {
 });
 
 // Route to process the form submission
-app.get('/process', (req, res) => {
-    const val = req.query.val;
-    //console.log("val:", val);
-    if (isNaN(val)) {
-        console.log("Failed to parse val = " + val);
+app.get('/add-to-cart', (req, res) => {
+    const quantity = req.query.quantity;
+    if (isNaN(quantity)) {
+        console.log("Failed to parse quantity = " + quantity);
         res.render('result', { value: null, error: 'Invalid input' });
     } else {
-        console.log("Success to parse val = " + val);
-        res.render('result', { value: val, error: null });
+        console.log("Success to parse quantity = " + quantity);
+        res.render('result', { value: quantity, error: null });
     }
 });
 
 
 app.listen(9700, () => {
-    console.log("Server started at port 3000")
+    console.log("Server started at port 9700")
 });

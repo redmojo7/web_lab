@@ -2,14 +2,35 @@
 <html>
     <%- include('header.ejs') %>
 <body>
-    <%- include('header.ejs') %>
-    
-    <main class="container">
-        <form action="/process" method="GET">
-            <label for="val">Enter a number:</label>
-            <input type="text" id="val" name="val">
-            <button type="submit">Submit</button>
-        </form>
+    <%- include('navbar.ejs') %>
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="product-image.jpg" alt="Product Image" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h2>Nikon Z 8 Mirrorless Camera</h2>
+                <p><strong>Price: $5,999.99</strong></p>
+                <p><strong>About this item</strong></p>
+                <ul>
+                    <li>Stacked CMOS sensor with minimal rolling shutter distortion.</li>
+                    <li>Up to 8.3K 60p N-RAW video recording.</li>
+                    <li>Up to 120fps continuous shooting.</li>
+                    <li>Groundbreaking subject detection autofocus.</li>
+                </ul>
+                <form action="/add-to-cart" method="GET">
+                    <div class="form-group row">
+                        <label for="quantity" class="col-sm-2 col-form-label">Quantity:</label>
+                        <div class="col-sm-2">
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1">
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="submit" class="btn btn-primary btn-block">Add to Cart</button>
+                        </div>
+                    </div>
+                </form>                
+            </div>
+        </div>
     </main>
 
   <%- include('footer.ejs') %>

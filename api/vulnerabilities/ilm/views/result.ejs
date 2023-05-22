@@ -2,15 +2,24 @@
 <html>
     <%- include('header.ejs') %>
 <body>
-    <%- include('header.ejs') %>
-    
-    <% if (typeof error !== 'undefined' && error) { %>
-        <h1>Error</h1>
-        <p>Failed to parse input: <%= error %></p>
-      <% } else { %>
-        <h1>Success</h1>
-        <p>Parsed value: <%= value %></p>
-      <% } %>
+    <%- include('navbar.ejs') %>
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="product-image.jpg" alt="Product Image" class="img-fluid">
+            </div>
+            <div class="col-md-10">
+                <% if (typeof error !== 'undefined' && error) { %>
+                    <h1>Error</h1>
+                    <p>Failed to parse input: <%= error %></p>
+                <% } else { %>
+                    <h1>Success</h1>
+                    <p>Quantity: <%= value %></p>
+                    <p>Product has been successfully added to the cart.</p>
+                <% } %>
+            </div>
+        </div>
+    </main>
 
   <%- include('footer.ejs') %>
 </body>
