@@ -8,6 +8,8 @@ const uuid = require('uuid');
 var crypto = require('crypto');
 const http = require('http');
 const db = require('./database');
+const { loginUser, registerUser } = require('./init');
+
 
 const app = express();
 
@@ -160,40 +162,17 @@ app.get("/logout", (req, res) => {
     });
 });
 
+// Call the registerUser function to simulate a registration request
+registerUser().then(() => {
+    console.log("User registered successfully");
+    // Call the loginUser function to simulate a login request
+    loginUser();
+}
+).catch((err) => {
+    console.error(err);
+});
+
+
 app.listen(9600, () => {
     console.log("Server started at port 3000")
 });
-
-const options = {
-    host: 'localhost',
-    port: 9600,
-    path: '/register',
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    }
-};
-
-const username = 'admin';
-const password = 'Vc2udrT74%dc@D';
-
-const data = JSON.stringify({
-    username: username,
-    password: password
-});
-
-const req = http.request(options, (res) => {
-    let body = '';
-    res.on('data', (chunk) => {
-        body += chunk;
-    });
-    res.on('end', () => {
-        console.log(body);
-    });
-    console.debug(`statusCode: ${res.statusCode}`);
-});
-req.on('error', (error) => {
-    console.error(error);
-});
-req.write(data);
-req.end();

@@ -7,6 +7,10 @@ services:
     restart: always
     ports:
       - "6379:6379"
+    networks:
+      web_lab_my_network:
+        aliases:
+          - ede_network
       
   web:
     build:
@@ -21,3 +25,12 @@ services:
       REDIS_PORT: 6379
     depends_on:
       - redis
+    networks:
+      web_lab_my_network:
+        aliases:
+          - ede_network
+
+networks:
+  web_lab_my_network:
+    external:
+      name: web_lab_my_network

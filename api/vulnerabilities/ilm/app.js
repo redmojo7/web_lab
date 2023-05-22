@@ -15,7 +15,18 @@ app.get("/", (req, res) => {
 
 // Route to process the form submission
 app.get('/add-to-cart', (req, res) => {
+
     const quantity = req.query.quantity;
+    // Decode the query parameter
+    const decodedParam = decodeURIComponent(quantity);
+
+    // Check if the decoded parameter includes %0a
+    if (decodedParam.includes('\n')) {
+        console.log("Failed to parse quantity = " + quantity);
+        // The query parameter includes %0a (newline character)
+        res.render('result', { value: null, error: 'You have successfully hacked it.' });
+    }
+
     if (isNaN(quantity)) {
         console.log("Failed to parse quantity = " + quantity);
         res.render('result', { value: null, error: 'Invalid input' });
@@ -23,6 +34,7 @@ app.get('/add-to-cart', (req, res) => {
         console.log("Success to parse quantity = " + quantity);
         res.render('result', { value: quantity, error: null });
     }
+    
 });
 
 
