@@ -7,3 +7,12 @@ services:
     command: python manage.py runserver 0.0.0.0:9500
     ports:
       - "9500:9500"
+    networks:
+      web_lab_my_network:
+        aliases:
+          - iam_network
+
+networks:
+  web_lab_my_network:
+    external:
+      name: web_lab_my_network

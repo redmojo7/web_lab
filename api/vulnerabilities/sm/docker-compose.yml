@@ -10,7 +10,7 @@ services:
     networks:
       web_lab_my_network:
         aliases:
-          - ede_network
+          - sm_network
       
   web:
     build:
@@ -28,7 +28,7 @@ services:
     networks:
       web_lab_my_network:
         aliases:
-          - ede_network
+          - sm_network
 
 networks:
   web_lab_my_network:

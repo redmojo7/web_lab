@@ -7,3 +7,12 @@ services:
     container_name: iam_web
     ports:
       - 9700:9700
+    networks:
+      web_lab_my_network:
+        aliases:
+          - iam_network
+
+networks:
+  web_lab_my_network:
+    external:
+      name: web_lab_my_network

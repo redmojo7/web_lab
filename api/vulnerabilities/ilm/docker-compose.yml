@@ -8,4 +8,13 @@ services:
     container_name: ilm_web
     restart: always
     ports:
-      - "9700:9700"
+      - "9800:9800"
+    networks:
+      web_lab_my_network:
+        aliases:
+          - ilm_network
+
+networks:
+  web_lab_my_network:
+    external:
+      name: web_lab_my_network
