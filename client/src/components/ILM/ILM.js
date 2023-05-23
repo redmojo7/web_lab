@@ -58,8 +58,8 @@ function ILM() {
           <div className="col-sm-3">
           </div>
           <div className="col-sm-6 d-flex justify-content-between">
-            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start IAM Instance</button>
-            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop IAM Instance</button>
+            <button className="btn btn-primary mt-3 col-sm-5" onClick={handleUpClick}>Start ILM Instance</button>
+            <button className="btn btn-danger mt-3 col-sm-5" onClick={handleDownClick}>Stop ILM Instance</button>
           </div>
 
           <div className="col-sm-3">

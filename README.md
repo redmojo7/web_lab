@@ -10,7 +10,6 @@ A full-stack web application that uses Docker, Node.js, Express, and React to de
 - [x] Broken Object Level Authorization
 - [x] Excessive Data Exposure
 - [x] Lack of Resources & Rate Limiting
-- [ ] Broken Function Level Authorization
 - [x] Mass Assignment
 - [x] Security Misconfiguration
 - [x] Improper Assets Management

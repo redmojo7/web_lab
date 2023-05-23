@@ -24,7 +24,7 @@ app.get('/add-to-cart', (req, res) => {
     if (decodedParam.includes('\n')) {
         console.log("Failed to parse quantity = " + quantity);
         // The query parameter includes %0a (newline character)
-        res.render('result', { value: null, error: 'You have successfully hacked it.' });
+        return res.render('result', { value: null, error: 'You have successfully hacked it.' });
     }
 
     if (isNaN(quantity)) {
