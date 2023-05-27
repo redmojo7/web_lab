@@ -1,6 +1,4 @@
 <?php
-// Check if the user is not logged in
-require_once 'auth.php';
 
 // Check if the registration form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

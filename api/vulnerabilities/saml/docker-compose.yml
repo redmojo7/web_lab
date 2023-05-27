@@ -15,10 +15,12 @@ services:
     networks:
       web_lab_my_network:
         aliases:
-          - sql_injection
+          - saml_network
     volumes:
-      - ${HOST_ABSOLUTE_PATH:-$PWD}/api/vulnerabilities/saml/users.php:/app/users.php
-      - ${HOST_ABSOLUTE_PATH:-$PWD}/api/vulnerabilities/saml/users.json:/app/users.json
+      - ${HOST_ABSOLUTE_PATH:-$PWD}/users.php:/app/users.php
+      - ${HOST_ABSOLUTE_PATH:-$PWD}/users.json:/app/users.json
+      #- ./users.php:/app/users.php
+      #- ./users.json:/app/users.json
   idp:
     image: kristophjunge/test-saml-idp
     #build:
@@ -29,7 +31,7 @@ services:
     networks:
       web_lab_my_network:
         aliases:
-          - sql_injection
+          - saml_network
     environment:
       HOSTNAME: ${HOSTNAME:-localhost} 
       HOST_ABSOLUTE_PATH: ${HOST_ABSOLUTE_PATH:-$PWD}
@@ -42,9 +44,9 @@ services:
       #SIMPLESAMLPHP_IDP_SINGLE_SIGN_ON_SERVICE: 'http://localhost:9200/saml/idp/ssocircle.php'
       #SIMPLESAMLPHP_IDP_SINGLE_LOGOUT_SERVICE: 'http://localhost:9200/saml/idp/sls.php'
     volumes:
-      - ${HOST_ABSOLUTE_PATH:-$PWD}/api/vulnerabilities/saml/users.php:/var/www/simplesamlphp/config/authsources.php
+      - ${HOST_ABSOLUTE_PATH:-$PWD}/users.php:/var/www/simplesamlphp/config/authsources.php
+      #- ./users.php:/var/www/simplesamlphp/config/authsources.php
 
 networks:
   web_lab_my_network:
-    external:
-      name: web_lab_my_network
+      external: true

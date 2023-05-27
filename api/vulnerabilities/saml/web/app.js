@@ -19,7 +19,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 console.log("DIRNAME: ", __dirname + '/certs/');
 
-
 // read the file synchronously
 const usersJson = fs.readFileSync('users.json');
 

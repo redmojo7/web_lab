@@ -34,5 +34,4 @@ services:
           - ede_network
 networks:
   web_lab_my_network:
-    external:
-      name: web_lab_my_network
+      external: true
