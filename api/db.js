@@ -28,6 +28,7 @@ async function getUserByEmail(email) {
     };
     console.debug(`[getUserByEmail]: ${query.values}`);
     const { rows } = await pool.query(query);
+    console.debug(`[getUserByEmail] rows.length = : ${rows.length}`);
     return rows[0];
   }
   

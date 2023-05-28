@@ -1,59 +1,62 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
-import './Register.css';
 const { server } = require('../../config');
 
 
 function RegisterForm(props) {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    first_name: '',
-    last_name: '',
-  });
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState("");
+
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${server}/api/register`, formData);
-      localStorage.setItem('token', response.data.token);
-      console.debug(`response.data: ${response.data}`);
-      props.onLogin(); // notify parent component of successful login
-      navigate(`/userprofile`); 
+      const response = await axios.post(`${server}/api/register`, { email, password });
+      console.log(`response.status: ${response.status}`);
+      if (response.status === 201) {
+        localStorage.setItem('token', response.data.token);
+        console.debug(`response.data: ${response.data}`);
+        props.onLogin(); // notify parent component of successful login
+        //navigate(`/excercise`); 
+        window.location.href = '/exercise'; 
+      }
     } catch (error) {
-      console.error(error);
+      console.debug(`response.data.message: ${error}`);
+      if (error.response && error.response.status === 409) {
+        setError(error.response.data.message);
+      } else {
+        setError('An error occurred while registering the user');
+      }
     }
   };
 
   return (
     <div>
-      <h1>Register Form</h1>
+      <div className="background">
+        <div className="shape"></div>
+        <div className="shape"></div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Email:
-          <input type="email" name="email" value={formData.email} onChange={handleChange} />
-        </label>
-        <label>
-          Password:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} />
-        </label>
-        <label>
-          First Name:
-          <input type="text" name="first_name" value={formData.firstName} onChange={handleChange} />
-        </label>
-        <label>
-          Last Name:
-          <input type="text" name="last_name" value={formData.lastName} onChange={handleChange} />
-        </label>
-        <button type="submit">Register</button>
+        <h3 className='text-white'>Register Here</h3>
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        {!!error && <Alert className='mt-2' variant="danger">{error}</Alert>}
+        {!error && <Alert className='mt-2' variant="transparent">&nbsp;</Alert>}
+        <button className="primary-button" type="submit">Register</button>
+        <div style={{textAlign: "center", marginTop: "9px"}}>
+          <a  href="/">Login</a>
+        </div>
       </form>
     </div>
   );

@@ -1,7 +1,10 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-function Footer() {
+function Footer(hidden) {
+  if (hidden) {
+    return null; // If hidden is true, return null to hide the component
+  }
   return (
     <footer className="footer mt-auto py-3 bg-dark">
       <Container>

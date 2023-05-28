@@ -1,12 +1,21 @@
 import React from 'react';
 
-const GenericComponent = ({ src }) => {
+const GenericComponent = ({ src, hidden, isLoggedIn }) => {
+
+    if (!isLoggedIn) {
+        window.location.href = '/'; // Redirect to login page if not logged in
+        return null; // If not logged in, return null to hide the component
+    }
+
+    if (hidden) {
+        return null; // If hidden is true, return null to hide the component
+    }
     
-  return (
-    <div className="flex-grow-1 bg-white">
-      <iframe className="w-100" style={{ height: "500px" }} src={src}></iframe>
-    </div>
-  );
+    return (
+        <div className="flex-grow-1 bg-white">
+            <iframe id="iframe-web" className="w-100" style={{ height: "500px" }} src={src}></iframe>
+        </div>
+    );
 };
 
 export default GenericComponent;

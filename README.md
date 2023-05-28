@@ -30,7 +30,7 @@ Here's a preview of what the projects looks like:
 - [web_lab](#web_lab)
   - [Table of Contents](#table-of-contents)
   - [About the Project](#about-the-project)
-  - [Framework](#Framework)
+  - [Framework](#framework)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
@@ -55,40 +55,38 @@ Include information about how to get started with the project. This include prer
 
 ### Prerequisites
 
-Before you get started with this project, you'll need to have the following tools and technologies installed:
+Before you get started with this project, you'll need to have the following tools installed:
 
 * `Docker` (v18 or higher)
-* `Node.js` (v12 or higher)
-* `NPM` (v6 or higher)
-* `Express.js` (v4 or higher)
-* `React.js` (v16 or higher)
-
-You can download `Docker` from the official website: https://www.docker.com/products/docker-desktop
-
-You can download `Node.js` and NPM from the official website: https://nodejs.org/en/download/
-
-To install `Express.js` and `React.js`, open a terminal window and run the following command:
-
-```
-npm install -g express react
-```
-Once you have these tools installed, you're ready to move on to the next section and start setting up your development environment.
 
 ### Installation
+You can download `Docker` from the official website: https://www.docker.com/products/docker-desktop
 
+Once you have Docker installed, you can proceed with setting up the project.
 
 ## Usage
 
-Provide examples and instructions on how to use the project. 
-To run the Backend server outside of a Docker:
+To use the project, follow the instructions below:
+
+- Start the project by running the web_lab.sh script:
 ```
-cd api
-npm run start
+./web_lab.sh start
 ```
-To run the Frontend server outside of a Docker:
+
+The script will handle the setup and execution of the project.
+
+- Stopping the Project:
+
+To stop the project, run the following command:
 ```
-cd client
-npm run start
+./web_lab.sh stop
+```
+This will stop both the backend, frontend servers and all containers.
+- Restarting the Project:
+
+If you need to restart the project, you can use the following command:
+```
+./web_lab.sh restart
 ```
 
 ## Roadmap

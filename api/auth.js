@@ -8,12 +8,15 @@ passport.use(
   new LocalStrategy({ usernameField: 'email' }, async (email, password, done) => {
     try {
       const user = await getUserByEmail(email);
-      console.debug(`login authentication: for user: ${email}`);
+      console.debug(`login authentication: email: ${email}`);
+      console.debug(`login authentication: user: ${user}`);
       if (!user) {
+        console.debug(`login authentication: user not found: ${email}`);
         return done(null, false, { message: 'Incorrect email or password' });
       }
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) {
+        console.debug(`login authentication: password did not match: ${email}`);
         return done(null, false, { message: 'Incorrect email or password' });
       }
       return done(null, user);

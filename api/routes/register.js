@@ -4,12 +4,23 @@ const { pool } = require('../db');
 const saltRounds = 10;
 
 async function register(req, res) {
-  const { email, password, first_name, last_name } = req.body;
+  const { email, password } = req.body;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
   try {
-    const queryText = 'INSERT INTO users (email, password, first_name, last_name) VALUES ($1, $2, $3, $4) RETURNING id, email';
-    const { rows } = await pool.query(queryText, [email, hashedPassword, first_name, last_name]);
+    // Check if the user already exists
+    const checkUserQuery = 'SELECT * FROM users WHERE email = $1';
+    const { rowCount } = await pool.query(checkUserQuery, [email]);
+    if (rowCount > 0) {
+      // User already exists, return an error response 
+      return res.status(409).json({
+        message: 'User already exists'
+      });
+    }
+
+    // User doesn't exist, insert a new user
+    const insertUserQuery = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id, email';
+    const { rows } = await pool.query(insertUserQuery, [email, hashedPassword]);
 
     const token = jwt.sign({ id: rows[0].id }, process.env.JWT_SECRET);
 
@@ -20,11 +31,12 @@ async function register(req, res) {
       token
     });
   } catch (error) {
-    console.error('Error while inserting user into the database', error);
+    console.error('Error while registering the user', error);
     res.status(500).json({
       message: 'An error occurred while registering the user'
     });
   }
 }
+
 
 module.exports = { register };

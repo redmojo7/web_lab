@@ -16,8 +16,9 @@ class Navigation extends Component {
   };
 
   render() {
+    const { hidden } = this.props;
     return (
-      <Col md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }}>
+      <Col md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)'}} hidden={hidden}>
         <Nav defaultActiveKey="/home" className="flex-column">
           <h5 style={{ color: "lightskyblue", textAlign: "center" }}>Exercises</h5>
           <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:8100`)}>SQL Injection</Nav.Link>

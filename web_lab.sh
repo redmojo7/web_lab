@@ -3,7 +3,8 @@
 # Function to start the application
 start_app() {
   echo "Starting the application..."
-  docker-compose up --build -d
+  #docker-compose up --build -d
+  docker-compose up -d
   num=1  # Initial sequence number
   # Loop through each directory in api/vulnerabilities and stop the Docker containers
   for folder in $PWD/api/vulnerabilities/*/; do
@@ -13,7 +14,8 @@ start_app() {
       :
     else
       echo -e "\n\n\n***** Starting Exercise $num : $(basename "$folder") *****\n\n\n"
-      cd "$folder" && docker-compose up --build -d
+      #cd "$folder" && docker-compose up --build -d
+      cd "$folder" && docker-compose up -d
     fi
     ((num++))  # Increment the sequence number
   done

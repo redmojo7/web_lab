@@ -99,7 +99,7 @@ input {
 }
 
 .primary-button {
-    margin-top: 50px;
+    
     width: 100%;
     background-color: #ffffff;
     color: #080710;
@@ -115,20 +115,8 @@ button:hover {
     border: 2px solid #1E90FF;
 }
 
-a {
-    margin-top: 20px;
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: bold;
-    border-bottom: 2px solid #ffffff;
-    transition: all 0.3s ease;
-}
 
-a:hover {
-    color: #1E90FF;
-    border-bottom: 2px solid #1E90FF;
-}
+
 
 p {
     font-family: 'Poppins', sans-serif;

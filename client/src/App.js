@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
 import LoginForm from "./components/LoginForm/LoginForm"
 import Commands from "./components/Commands/Commands"
 import RegisterForm from "./components/Register/Register";
@@ -23,7 +24,7 @@ function App() {
 
   const handleLogin = () => {
     // handle login logic
-    setIsLoggedIn(true);
+    setIsLoggedIn(false);
   };
 
   const handleClick = async (excercise) => {
@@ -31,7 +32,7 @@ function App() {
     setSrc(excercise);
   }
 
-  console.log(`server: ${server}`);
+  console.log(`login: ${isLoggedIn}`);
 
   useEffect(() => {
     fetch(`${server}/express_backend`)
@@ -46,6 +47,7 @@ function App() {
   useEffect(() => {
     auth.checkLogin();
     setIsLoggedIn(auth.isAuthenticated()); // set isLoggedIn to true if token exists, false otherwise
+    console.log(`login checking: ${isLoggedIn}`);
   }, []);
 
   return (
@@ -53,9 +55,15 @@ function App() {
       <Header hidden={!isLoggedIn} />
       <Router>
         <Row>
-          <Navigation hidden={!isLoggedIn} onClick={handleClick}/>
-          <Col md={10}>
-            <GenericComponent src={`${src}/`} />
+          <Navigation hidden={!isLoggedIn} onClick={handleClick} />
+          <Col md={10} >
+              <Routes>
+                <Route path="/" element={<LoginForm onLogin={handleLogin}  />} />
+                <Route path="/exercise" element={<GenericComponent src={`${src}/`} hidden={!isLoggedIn} isLoggedIn={isLoggedIn}/>} />
+                 {/*<Route path="/commands" element={<Commands />} /> */}
+                <Route path="/register" element={<RegisterForm onLogin={handleLogin} />} />
+                <Route path="*" element={<Navigate to="/" />} />
+              </Routes>
           </Col>
         </Row>
       </Router>

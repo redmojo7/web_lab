@@ -9,7 +9,11 @@ const handleLogout = () => {
   };
 
 
-function Header() {
+function Header(props) {
+  console.log(`header: `, props.hidden);
+  if (props.hidden === true || props.hidden === undefined) {
+    return null; // If hidden is true, return null to hide the component
+  }
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
         <Container>

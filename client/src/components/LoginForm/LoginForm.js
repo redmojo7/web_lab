@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Alert } from 'react-bootstrap';
 import './LoginForm.css';
 import Auth from "../Auth/Auth"
 
@@ -16,7 +15,7 @@ const LoginForm = (props) => {
 
 
   if (Auth.isAuthenticated()) {
-    navigate(`/userprofile/`); // redirect to profile page
+    navigate(`/`); // redirect to profile page
   }
 
   const handleLogin = async (e) => {
@@ -34,10 +33,11 @@ const LoginForm = (props) => {
       if (response.ok) {
         localStorage.setItem('token', data.token);
         props.onLogin(); // notify parent component of successful login
-        navigate(`/userprofile`); // redirect to profile page
-        
+        //navigate(`/exercise`); // redirect to profile page
+        window.location.href = '/exercise';
       } else {
         setError(data.message);
+        console.log(`error ${data.message}`);
       }
     } catch (error) {
       console.error(error);
@@ -46,18 +46,22 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <div class="background">
-        <div class="shape"></div>
-        <div class="shape"></div>
+      <div className="background">
+        <div className="shape"></div>
+        <div className="shape"></div>
       </div>
       <form onSubmit={handleLogin}>
-        <h3 className='text-dark'>Login Here</h3>
+        <h3 className='text-white'>Login Here</h3>
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <label for="password">Password</label>
         <input type="password" id="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button class="primary-button" type="submit">Log In</button>
-        <a href="/register">Register</a>
+        {!!error && <Alert className='mt-2' variant="danger">{error}</Alert>}
+        {!error && <Alert className='mt-2' variant="transparent">&nbsp;</Alert>}
+        <button className="primary-button" type="submit">Log In</button>
+        <div style={{textAlign: "center", marginTop: "9px"}}>
+          <a  href="/register">Register</a>
+        </div>
       </form>
     </div>
   );
