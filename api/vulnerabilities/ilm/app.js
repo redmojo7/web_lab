@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 // Route to process the form submission
 app.get('/add-to-cart', (req, res) => {
-
+    
     const quantity = req.query.quantity;
     // Decode the query parameter
     const decodedParam = decodeURIComponent(quantity);
@@ -27,14 +27,13 @@ app.get('/add-to-cart', (req, res) => {
         return res.render('result', { value: null, error: 'You have successfully hacked it.' });
     }
 
-    if (isNaN(quantity)) {
-        console.log("Failed to parse quantity = " + quantity);
-        res.render('result', { value: null, error: 'Invalid input' });
-    } else {
+    if (!isNaN(quantity) && quantity > 0) {
         console.log("Success to parse quantity = " + quantity);
         res.render('result', { value: quantity, error: null });
+    } else {
+        console.log("Failed to parse quantity = " + quantity);
+        res.render('result', { value: null, error: 'Invalid input' });
     }
-    
 });
 
 

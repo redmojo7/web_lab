@@ -15,8 +15,18 @@ const LoginForm = (props) => {
 
 
   if (Auth.isAuthenticated()) {
-    navigate(`/`); // redirect to profile page
+    const currentURL = window.location.pathname;
+    if (currentURL !== "/") {
+      navigate(`/`); // redirect to profile page
+    }
   }
+
+  console.log(`login form: ${props.hidden}`);
+  if (props.hidden) {
+  
+    return null;
+  }
+
 
   const handleLogin = async (e) => {
     e.preventDefault();

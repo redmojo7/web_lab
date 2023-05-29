@@ -1,36 +1,55 @@
-import { Nav, Col } from 'react-bootstrap';
 import React, { Component } from 'react';
+import { Nav, Col } from 'react-bootstrap';
 const { serverIp } = require('./config');
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      src: `http://${serverIp}:8100/`
+      activeNav: '1'
     };
   }
 
-  handleNavItemClick = (excercise) => {
-    //console.log(`[Nav] exercise: ${excercise}`);
-    this.props.onClick(excercise);
+  handleNavItemClick = (navId, url) => {
+    this.props.onClick(url);
+    this.setState({ activeNav: navId });
   };
+
+  renderNavLinks() {
+    const { activeNav } = this.state;
+
+    const navLinks = [
+      { id: '1', label: 'SQL Injection', url: `http://${serverIp}:8100` },
+      { id: '2', label: 'Cross-Site Scripting', url: `http://${serverIp}:8100/chat.php` },
+      { id: '3', label: 'Broken User Authentication', url: `http://${serverIp}:9100` },
+      { id: '4', label: 'Broken Object Level Authorization', url: `http://${serverIp}:9300` },
+      { id: '5', label: 'Excessive Data Exposure', url: `http://${serverIp}:9400` },
+      { id: '6', label: 'Lack of Resources & Rate Limiting', url: `http://${serverIp}:8100/login.php` },
+      { id: '7', label: 'Mass Assignment', url: `http://${serverIp}:9500` },
+      { id: '8', label: 'Security Misconfiguration', url: `http://${serverIp}:9600` },
+      { id: '9', label: 'Improper Assets Management', url: `http://${serverIp}:9700/api/v2/books` },
+      { id: '10', label: 'Insufficient Logging & Monitoring', url: `http://${serverIp}:9800` },
+    ];
+
+    return navLinks.map((navLink) => (
+      <Nav.Link
+        key={navLink.id}
+        className={`${activeNav === navLink.id ? '' : 'text-white'}`}
+        onClick={() => this.handleNavItemClick(navLink.id, navLink.url)}
+      >
+        {navLink.label}
+      </Nav.Link>
+    ));
+  }
 
   render() {
     const { hidden } = this.props;
+
     return (
-      <Col md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)'}} hidden={hidden}>
+      <Col md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }} hidden={hidden}>
         <Nav defaultActiveKey="/home" className="flex-column">
-          <h5 style={{ color: "lightskyblue", textAlign: "center" }}>Exercises</h5>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:8100`)}>SQL Injection</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:8100/chat.php`)}>Cross-Site Scripting</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9100`)}>Broken User Authentication</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9300`)}>Broken Object Level Authorization</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9400`)}>Excessive Data Exposure</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:8100/login.php`)}>Lack of Resources & Rate Limiting</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9500`)}>Mass Assignment</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9600`)}>Security Misconfiguration</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9700/api/v2/books`)}>Improper Assets Management</Nav.Link>
-          <Nav.Link style={{ textAlign: "left" }} onClick={() => this.handleNavItemClick(`http://${serverIp}:9800`)}>Insufficient Logging & Monitoring</Nav.Link>
+          <h5 className='text-white text-center'>Exercises</h5>
+          {this.renderNavLinks()}
         </Nav>
       </Col>
     );

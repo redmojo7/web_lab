@@ -28,6 +28,8 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=mypassword
       - POSTGRES_DB=ede_db
+    ports:
+      - "5433:5432" # Map host port 5433 to container port 5432
     networks:
       web_lab_my_network:
         aliases:

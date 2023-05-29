@@ -1,14 +1,10 @@
 import React from 'react';
 
-const GenericComponent = ({ src, hidden, isLoggedIn }) => {
+const GenericComponent = ({ src, isLoggedIn }) => {
 
     if (!isLoggedIn) {
         window.location.href = '/'; // Redirect to login page if not logged in
         return null; // If not logged in, return null to hide the component
-    }
-
-    if (hidden) {
-        return null; // If hidden is true, return null to hide the component
     }
     
     return (

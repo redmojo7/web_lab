@@ -18,8 +18,6 @@ const { server, serverIp } = require('./config');
 function App() {
 
   const [src, setSrc] = useState(`http://${serverIp}:8100/`);
-
-  const [message, setMessage] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
 
   const handleLogin = () => {
@@ -39,7 +37,6 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setMessage(data.message);
       });
   }, []);
   //const message = "hello.....
@@ -48,6 +45,9 @@ function App() {
     auth.checkLogin();
     setIsLoggedIn(auth.isAuthenticated()); // set isLoggedIn to true if token exists, false otherwise
     console.log(`login checking: ${isLoggedIn}`);
+    if (isLoggedIn && window.location.pathname === "/") {
+      window.location.href = '/exercise';
+    }
   }, []);
 
   return (
@@ -58,8 +58,8 @@ function App() {
           <Navigation hidden={!isLoggedIn} onClick={handleClick} />
           <Col md={10} >
               <Routes>
-                <Route path="/" element={<LoginForm onLogin={handleLogin}  />} />
-                <Route path="/exercise" element={<GenericComponent src={`${src}/`} hidden={!isLoggedIn} isLoggedIn={isLoggedIn}/>} />
+                <Route path="/" element={<LoginForm onLogin={handleLogin}  hidden={isLoggedIn}/>} />
+                <Route path="/exercise" element={<GenericComponent src={`${src}/`} isLoggedIn={isLoggedIn}/>} />
                  {/*<Route path="/commands" element={<Commands />} /> */}
                 <Route path="/register" element={<RegisterForm onLogin={handleLogin} />} />
                 <Route path="*" element={<Navigate to="/" />} />
