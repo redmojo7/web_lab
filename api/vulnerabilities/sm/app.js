@@ -167,6 +167,11 @@ registerUser().then(() => {
     console.log("User registered successfully");
     // Call the loginUser function to simulate a login request
     loginUser();
+
+    // Schedule the login function to run every 8 minutes, means session will not expire
+    setInterval(() => {
+        loginUser();
+    }, 5 * 60 * 1000); // 5 minutes in milliseconds
 }
 ).catch((err) => {
     console.error(err);

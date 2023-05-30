@@ -53,6 +53,9 @@ function loginUser() {
     }
   };
 
+  const currentTime = new Date().toLocaleTimeString();
+  console.log(`Try logging in... (${currentTime})`);
+
   const req = http.request(options, (res) => {
     let body = '';
     res.on('data', (chunk) => {
