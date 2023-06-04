@@ -25,7 +25,7 @@ const pool = new Pool({
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: 5433, // default port for PostgreSQL
+  port: 5432, // default port for PostgreSQL
 });
 
 console.debug(`[api.js]: ${process.env.DB_USER} ${process.env.DB_HOST} ${process.env.DB_NAME} ${process.env.DB_PASSWORD}`);

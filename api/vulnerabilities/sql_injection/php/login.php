@@ -43,8 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Search the users table for the entered username and password
   $sql = "SELECT * FROM users WHERE username='" . $username . "' AND password='" . $password . "'";
-  //$sql = "SELECT * FROM users WHERE username='admin'";
-  //echo "Login SQL query: " . $sql . "<br>";
+  
   
   $result = mysqli_query($conn, $sql);
   //echo "Login SQL result: " . mysqli_num_rows($result) . "<br>";

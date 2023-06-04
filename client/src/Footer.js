@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-function Footer(hidden) {
-  if (hidden) {
+function Footer(props) {
+  if (props.hidden) {
     return null; // If hidden is true, return null to hide the component
   }
   return (
