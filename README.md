@@ -1,6 +1,6 @@
 # web_lab
 
-A full-stack web application that uses Docker, Node.js, Express, and React to demonstrate the [OWASP API Top Ten vulnerabilities](https://owasp.org/www-project-api-security/).
+A full-stack web application that uses Docker, Node.js, Express, and React to demonstrate the [OWASP Top 10 API Security Risks – 2019](https://owasp.org/API-Security/editions/2019/en/0x11-t10/).
 
 ## Accomplishments
 
