@@ -9,13 +9,13 @@ function Footer(props) {
     <footer className="footer mt-auto py-3 bg-dark">
       <Container>
         <div className="row">
-          <div className="col-md-6">
+          <div className="offset-md-2 col-md-4">
             <h3 className="text-white">Contact Us</h3>
             <p className="text-white">Kent St</p>
             <p className="text-white">Bentley, WA 6102</p>
             <p className="text-white">Email: peng.cai@student.curtin.edu.au</p>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-4 offset-md-2">
             <h3 className="text-white">Follow Us</h3>
             <ul className="list">
               <li className="list text-muted"><a href="https://www.curtin.edu.au/"><i className="fa fa-linkedin "></i>Curtin University</a></li>

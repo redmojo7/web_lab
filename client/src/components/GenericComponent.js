@@ -9,7 +9,7 @@ const GenericComponent = ({ src, isLoggedIn }) => {
     
     return (
         <div className="flex-grow-1 bg-white">
-            <iframe id="iframe-web" className="w-100" style={{ height: "500px" }} src={src}></iframe>
+            <iframe id="iframe-web" className="w-100" style={{ height: "800px" }} src={src}></iframe>
         </div>
     );
 };

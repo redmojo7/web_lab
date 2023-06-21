@@ -48,6 +48,7 @@ class Navigation extends Component {
     return navLinks.map((navLink) => (
       <Nav.Link
         key={navLink.id}
+        style={{ height: '65px', fontSize: '20px' }}
         className={`${activeNav === navLink.id ? '' : 'text-white'}`}
         onClick={() => this.handleNavItemClick(navLink.id, navLink.url)}
       >
@@ -60,9 +61,9 @@ class Navigation extends Component {
     const { hidden } = this.props;
 
     return (
-      <Col md={2} style={{ overflowY: 'scroll', height: 'calc(100vh - 56px)' }} hidden={hidden}>
+      <Col md={2} className="mt-3" style={{ overflowY: 'scroll'}} hidden={hidden}>
         <Nav defaultActiveKey="/home" className="flex-column">
-          <h5 className='text-white text-center'>Exercises</h5>
+          <h3 className='text-white text-center'>Exercises</h3>
           {this.renderNavLinks()}
         </Nav>
       </Col>
